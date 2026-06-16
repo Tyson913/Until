@@ -462,12 +462,13 @@ function fillResBox2(
 
 To-Do
 
-Add button for going back to the original analysis state
-Add conversion functionality per actions
-Change the timeHighlight accordingly
+Add input validation (forgotten / missed)
+Add a button to return to the original analysis state
+Add conversion functionality per action
+Update the time highlight accordingly
 
-//  Add web app description
-//  Enhance the ui
-//  deploy
+// Add web app description
+// Enhance the UI
+// Deploy
 
 */
