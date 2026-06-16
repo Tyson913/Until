@@ -6,7 +6,6 @@
 */
 
 
-
 import { addDays, addWeeks, addMonths, addYears } from "https://cdn.jsdelivr.net/npm/date-fns@4/+esm";
 
 const form = document.getElementById("ftForm");
@@ -405,31 +404,6 @@ function fillResBox2(
         `Your goal is to purchase ${productText} priced at ${formattedUnitPrice}${unitText}. With ${formattedSavingsAmount} already saved and ${timeHighlight} available between ${startingDate} and ${endingDate}, you can continue progressing toward your target.`
     ];
 
-    const convertionsButtons = [];
-
-    for (const [key, value] of Object.entries(etpFreq)) {
-        if (value != etpFreq[savingsFreq]) {
-            convertionsButtons.push({
-                text: `convert to ${value}`,
-                action: `convert_to_${value}`
-            })
-        }
-    }
-
-    const convertionMenu = `
-    <div class="wrapper">
-        <div id= "convertionMenu" style="display: none;">
-            ${convertionsButtons.map(a => `
-                <button 
-                class="convertionButtons"
-                data-action="${a.action}">
-                    ${a.text}
-                </button>
-
-                `).join("")}
-        </div>
-    </div>
-    `;
 
     analIndex = Math.floor(Math.random() * 27);
     analysis = analTexts[analIndex];
@@ -438,37 +412,124 @@ function fillResBox2(
     analBox2.textContent = endingDate;
     analText.innerHTML = analysis;
 
+    const convertionsUnits = [];
+    const estimatedTimeNeededLabel = `${timeNeeded} ${etpFreq[savingsFreq]}`;
+    for (const [key, value] of Object.entries(etpFreq)) {
+        if (value != etpFreq[savingsFreq]) {
+            let equivalentVal;
+            let equivalent;
 
+            if (value === "days") {
+                if (etpFreq[savingsFreq] === "weeks") {
+                    equivalent = Math.trunc(timeNeeded * 7);
+                    equivalentVal = `${equivalent} day${equivalent !== 1 ? "s" : ""}`;
+                }
+                else if (etpFreq[savingsFreq] === "months") {
+                    equivalent = Math.trunc(timeNeeded * 30);
+                    equivalentVal = `${equivalent} day${equivalent !== 1 ? "s" : ""}`;
+                }
+                else {
+                    equivalent = Math.trunc(timeNeeded * 365);
+                    equivalentVal = `${equivalent} day${equivalent !== 1 ? "s" : ""}`;
+                }
 
+                convertionsUnits.push({
+                    estimatedTimeNeeded: estimatedTimeNeededLabel,
+                    equivalent: equivalentVal
+                });
+            }
+
+            else if (value === "weeks") {
+                if (etpFreq[savingsFreq] === "days") {
+                    equivalent = Math.trunc(timeNeeded / 7);
+                    equivalentVal = `${equivalent} week${equivalent !== 1 ? "s" : ""}`;
+                }
+                else if (etpFreq[savingsFreq] === "months") {
+                    equivalent = Math.trunc(timeNeeded * 4);
+                    equivalentVal = `${equivalent} week${equivalent !== 1 ? "s" : ""}`;
+                }
+                else {
+                    equivalent = Math.trunc(timeNeeded * 52);
+                    equivalentVal = `${equivalent} week${equivalent !== 1 ? "s" : ""}`;
+                }
+
+                convertionsUnits.push({
+                    estimatedTimeNeeded: estimatedTimeNeededLabel,
+                    equivalent: equivalentVal
+                });
+            }
+
+            else if (value === "months") {
+                if (etpFreq[savingsFreq] === "days") {
+                    equivalent = Math.trunc(timeNeeded / 30);
+                    equivalentVal = `${equivalent} month${equivalent !== 1 ? "s" : ""}`;
+                }
+                else if (etpFreq[savingsFreq] === "weeks") {
+                    equivalent = Math.trunc(timeNeeded / 4);
+                    equivalentVal = `${equivalent} month${equivalent !== 1 ? "s" : ""}`;
+                }
+                else {
+                    equivalent = Math.trunc(timeNeeded * 12);
+                    equivalentVal = `${equivalent} month${equivalent !== 1 ? "s" : ""}`;
+                }
+
+                convertionsUnits.push({
+                    estimatedTimeNeeded: estimatedTimeNeededLabel,
+                    equivalent: equivalentVal
+                });
+            }
+
+            else {
+                if (etpFreq[savingsFreq] === "days") {
+                    equivalent = Math.trunc(timeNeeded / 365);
+                    equivalentVal = `${equivalent} year${equivalent !== 1 ? "s" : ""}`;
+                }
+                else if (etpFreq[savingsFreq] === "weeks") {
+                    equivalent = Math.trunc(timeNeeded / 52);
+                    equivalentVal = `${equivalent} year${equivalent !== 1 ? "s" : ""}`;
+                }
+                else {
+                    equivalent = Math.trunc(timeNeeded / 12);
+                    equivalentVal = `${equivalent} year${equivalent !== 1 ? "s" : ""}`;
+                }
+
+                convertionsUnits.push({
+                    estimatedTimeNeeded: estimatedTimeNeededLabel,
+                    equivalent: equivalentVal
+                });
+            }
+        }
+    }
+
+    const convertions = `
+        <div id="convertionsCon" style="display: none;">
+            <div id="cvheader">Convertions</div>
+            ${convertionsUnits.map(a => `
+            <div class="convertion">
+                <label class ="labels">
+                    <span class="key">${a.estimatedTimeNeeded}</span>
+                    <span class="val">${a.equivalent}</span>
+                </label>
+            </div>
+            <div class="arrow"></div>
+            `).join("")}
+        </div>
+    `;
 
     const timeHighlightElem = document.querySelector(".timeHiglight");
-
+    
     timeHighlightElem.insertAdjacentHTML(
         "beforeend",
-        convertionMenu
+        convertions
     );
-    const convertionMenuElem = document.getElementById("convertionMenu");
+
+    const convertionsElem = document.getElementById("convertionsCon");
 
     timeHighlightElem.addEventListener("mouseenter", () => {
-        convertionMenuElem.style.display = 'flex';
+        convertionsElem.style.display = 'flex';
     });
 
     timeHighlightElem.addEventListener("mouseleave", () => {
-        convertionMenuElem.style.display = 'none';
+        convertionsElem.style.display = 'none';
     });
 }
-
-/*
-
-To-Do
-
-Add input validation (forgotten / missed)
-Add a button to return to the original analysis state
-Add conversion functionality per action
-Update the time highlight accordingly
-
-// Add web app description
-// Enhance the UI
-// Deploy
-
-*/
