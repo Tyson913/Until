@@ -492,7 +492,6 @@ function fillResBox2(
                     equivalent = Math.trunc(timeNeeded / 12);
                     equivalentVal = `${equivalent} year${equivalent !== 1 ? "s" : ""}`;
                 }
-
                 convertionsUnits.push({
                     estimatedTimeNeeded: estimatedTimeNeededLabel,
                     equivalent: equivalentVal
@@ -522,7 +521,6 @@ function fillResBox2(
         "beforeend",
         convertions
     );
-
     const convertionsElem = document.getElementById("convertionsCon");
 
     timeHighlightElem.addEventListener("mouseenter", () => {
