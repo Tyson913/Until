@@ -1,0 +1,109 @@
+<!-- 
+ 
+    Gi utro ko nako ug himo for retention and since kayaot man sa ako nahimo tung una.
+    Ang design ani is not yet final. I'll just paste the link sa site somewhere pag ma deploy na.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_double_arrow_right" />
+</head>
+<body>
+    <header>
+        FundTimer
+    </header>
+    <main>
+        <form action="" id="ftForm">
+            <label for="">Product Name</label>
+            <input type="text" id="prodName" required>
+
+            <label for="">Product Quantity</label>
+            <input type="number" id="prodQuan" required>
+
+            <label for="">Price Currency</label>
+            <select id="prodCurr" required>
+                <option value="php">Philippine Peso (PHP - ₱)</option>
+                <option value="usd">US Dollar (USD - $)</option>
+                <option value="eur">Euro (EUR - €)</option>
+                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
+                <option value="jpy">Japanese Yen (JPY - ¥)</option>
+                <option value="gbp">British Pound (GBP - £)</option>
+            </select>
+
+            <label for="">Unit Price</label>
+            <input type="number" id="prodPrice" required>
+
+            <div  id="savstartdate" style="display: none;">
+                <label for="">Saving Starting Date</label>
+                <input type="date" id="targetPurDate">
+            </div>
+
+            <label for="">Savings Frequency</label>
+
+            <select id="savFreq" required>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <label for="">Savings Currency</label>
+            <select id="savCurr" required>
+                <option value="php">Philippine Peso (PHP - ₱)</option>
+                <option value="usd">US Dollar (USD - $)</option>
+                <option value="eur">Euro (EUR - €)</option>
+                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
+                <option value="jpy">Japanese Yen (JPY - ¥)</option>
+                <option value="gbp">British Pound (GBP - £)</option>
+            </select>
+
+            <label for="">Savings Amount</label>
+            <input type="number" id="savAm" required>
+            <input type="submit" value="Estimate Time To Purchase" id="etpButt">
+        </form>
+        <button type="button" id="gensavplanbuttn">Generate savings plan</button>
+
+        <div id="resultboxFETCalc" class="res-box" style="display: none;">
+            <label>Item: <p id="pn"></p></label>
+            <label>Quantity:<p id="pquan"></p></label>
+            <label>Unit Price: <p id="up"></p></label>
+            <label>Savings Frequency: <p id="sf"></p></label>
+            <label>Savings Amount: <p id="sa"></p></label>
+            <label>Estimated Time Purchase: <p id="etp"></p></label>
+        </div>
+
+        <div id="resultboxSavPlanGen" class="res-box" style="display: none;">
+            <label id="item">Item: <p id="pn2"></p></label>
+            <div id="detailsCon">
+                <div class="details">            
+                    <label>Quantity:<p id="pquan2"></p></label>
+                    <label>Unit Price: <p id="up2"></p></label>
+                </div>
+                <div class="details" id="detail2">
+                    <label>Savings Frequency: <p id="sf2"></p></label>
+                    <label>Savings Amount: <p id="sa2"></p></label>
+                </div>
+            </div>
+            <div id="analysisModelCon">
+                <div class="box" id="startingDateCon"></div>
+                <span class="material-symbols-outlined" style="font-size: 30px;">
+                keyboard_double_arrow_right
+                </span>
+                <div class="box" id="endingDateCon"></div>
+            </div>
+            <label for="">Summary: <p id="analText"></p></label>
+        </div>
+    </main>
+    <footer>
+        <p>Created by: Cj Banluta</p>
+        <p>All rights reserved 2026</p>
+    </footer>
+    <script src="./Backend/operations.js" type="module"></script>
+</body>
+</html>
