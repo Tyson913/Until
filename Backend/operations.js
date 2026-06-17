@@ -5,7 +5,6 @@
 
 */
 
-
 import { addDays, addWeeks, addMonths, addYears } from "https://cdn.jsdelivr.net/npm/date-fns@4/+esm";
 
 const form = document.getElementById("ftForm");
@@ -39,15 +38,12 @@ const etpFreq = {
 const sfreq = document.getElementById("sfreqlabel");
 const savFreqDropdown = document.getElementById("savFreq");
 
-savFreqDropdown.addEventListener('change', function () {
-    sfreq.textContent = etpFreq[savFreqDropdown.value];
-    const freqlabel = document.getElementById("freqUnit");
-})
+function updateFreqLabel() {
+    sfreq.textContent = etpFreq[savFreqDropdown.value] || "";
+}
+savFreqDropdown.addEventListener("change", updateFreqLabel);
 
-
-
-
-
+updateFreqLabel();
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();

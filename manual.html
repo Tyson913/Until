@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="How Until works — a short guide to estimating your savings timeline and building a savings plan.">
     <title>Guide — Until</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
         :root {
-            --paper: #F2EEE2;
-            --paper-deep: #E8E1CC;
-            --ink: #1C2620;
-            --ink-soft: #6A6F62;
-            --gold: #B8862E;
-            --gold-deep: #8C611E;
-            --moss: #3E5C46;
-            --moss-deep: #2C4534;
-            --line: #D7CEB4;
-            --radius: 3px;
+            --bg: #F7F6F3;
+            --surface: #FFFFFF;
+            --ink: #1A1A1A;
+            --ink-soft: #6E6E68;
+            --ink-faint: #A8A8A2;
+            --accent: #B07C2E;
+            --accent-deep: #8E6525;
+            --accent-bg: rgba(176, 124, 46, 0.07);
+            --sage: #4D7358;
+            --sage-deep: #3B5A44;
+            --border: #E6E3DC;
+            --border-light: #EFECE6;
+            --radius: 10px;
+            --radius-sm: 6px;
         }
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            height: 100%;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; }
+        html { height: 100%; scroll-behavior: smooth; }
         body {
             min-height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: var(--paper);
-            background-image: radial-gradient(var(--line) 1px, transparent 1.6px);
-            background-size: 22px 22px;
+            background-color: var(--bg);
             color: var(--ink);
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-
-        a {
-            color: inherit;
+        ::selection {
+            background: rgba(176, 124, 46, 0.14);
+            color: var(--ink);
         }
-
-        /* ── Header (shared identity with the calculator) ─ */
+        a { color: inherit; }
 
         header.site-header {
             position: sticky;
@@ -61,268 +55,235 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 20px;
-            background: var(--paper);
-            border-bottom: 1px solid var(--line);
+            padding: 18px 24px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
             z-index: 10;
         }
-
         .wordmark {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            font-size: 1.4rem;
-            letter-spacing: -0.02em;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
             text-decoration: none;
             color: var(--ink);
         }
-
         .nav-link {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 500;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
             text-decoration: none;
             color: var(--ink-soft);
-            border-bottom: 1px solid transparent;
             padding-bottom: 2px;
-            transition: color .15s ease, border-color .15s ease;
+            border-bottom: 1px solid transparent;
+            transition: color .2s ease, border-color .2s ease;
         }
-
         .nav-link:hover,
         .nav-link:focus-visible {
-            color: var(--gold-deep);
-            border-color: var(--gold-deep);
+            color: var(--accent);
+            border-color: var(--accent);
         }
-
         a:focus-visible {
-            outline: 2px solid var(--gold-deep);
-            outline-offset: 2px;
+            outline: none;
         }
 
-        /* ── Layout ─────────────────────────────────────── */
-
-        main,
-        footer {
+        main, footer {
             width: 100%;
             max-width: 640px;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-
         main {
-            padding-top: 28px;
+            padding-top: 36px;
             padding-bottom: 60px;
         }
 
         .kicker {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--gold-deep);
-            margin: 0 0 6px;
+            color: var(--accent);
+            margin: 0 0 8px;
         }
-
         h1 {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            font-size: clamp(1.6rem, 6vw, 2.1rem);
-            letter-spacing: -0.01em;
-            margin: 0 0 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 5vw, 1.9rem);
+            letter-spacing: -0.025em;
+            margin: 0 0 16px;
             line-height: 1.2;
+            color: var(--ink);
         }
-
         .intro {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.94rem;
+            line-height: 1.65;
             color: var(--ink-soft);
             max-width: 56ch;
-            margin: 0 0 28px;
+            margin: 0 0 32px;
         }
-
-        /* ── Table of contents ──────────────────────────── */
 
         .toc {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 18px;
-            padding: 14px 0;
-            margin-bottom: 30px;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+            gap: 10px 20px;
+            padding: 16px 0;
+            margin-bottom: 36px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
-
         .toc a {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 500;
-            font-size: 0.76rem;
-            letter-spacing: 0.03em;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
             text-decoration: none;
             color: var(--ink);
             border-bottom: 1px solid transparent;
-            transition: color .15s ease, border-color .15s ease;
+            transition: color .2s ease, border-color .2s ease;
         }
-
         .toc a:hover {
-            color: var(--gold-deep);
-            border-color: var(--gold-deep);
+            color: var(--accent);
+            border-color: var(--accent);
         }
-
-        /* ── Sections ───────────────────────────────────── */
 
         section {
-            margin-bottom: 38px;
-            padding-bottom: 30px;
-            border-bottom: 1px dashed var(--line);
+            margin-bottom: 40px;
+            padding-bottom: 34px;
+            border-bottom: 1px solid var(--border-light);
         }
-
         section:last-of-type {
             border-bottom: none;
         }
-
         h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
             font-size: 1.05rem;
-            letter-spacing: -0.005em;
-            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+            margin: 0 0 14px;
             color: var(--ink);
         }
-
         section p {
             font-size: 0.92rem;
-            line-height: 1.65;
+            line-height: 1.7;
             max-width: 60ch;
             margin: 0 0 14px;
+            color: var(--ink-soft);
         }
-
         section p:last-child {
             margin-bottom: 0;
         }
-
         section ol {
             margin: 0;
             padding-left: 1.2em;
             max-width: 60ch;
         }
-
         section ol li {
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.92rem;
-            line-height: 1.65;
+            line-height: 1.7;
             margin-bottom: 10px;
-            font-family: 'JetBrains Mono', monospace;
+            color: var(--ink-soft);
         }
-
         section ol li::marker {
-            color: var(--gold-deep);
-            font-weight: 600;
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
         }
-
         section ol li strong,
         section p strong {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
             color: var(--ink);
         }
-
         section ol li em,
         section p em {
             font-style: normal;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--moss-deep);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.88em;
+            color: var(--sage-deep);
         }
-
-        /* ── FAQ accordion ──────────────────────────────── */
 
         details {
-            border-bottom: 1px solid var(--line);
-            padding: 14px 0;
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
         }
-
         details:first-of-type {
-            border-top: 1px solid var(--line);
+            border-top: 1px solid var(--border-light);
         }
-
         summary {
             cursor: pointer;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            font-family: 'Inter', sans-serif;
+            gap: 14px;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: var(--ink);
+            transition: color .2s ease;
         }
-
+        summary:hover {
+            color: var(--accent-deep);
+        }
         summary::-webkit-details-marker {
             display: none;
         }
-
         summary::after {
             content: "+";
             flex-shrink: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--gold-deep);
+            font-family: 'DM Mono', monospace;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--accent);
+            transition: transform .2s ease;
         }
-
         details[open] summary::after {
             content: "–";
         }
-
         details p {
-            margin: 10px 0 0;
+            margin: 12px 0 0;
             color: var(--ink-soft);
             font-size: 0.88rem;
-            line-height: 1.6;
+            line-height: 1.65;
             max-width: 58ch;
         }
-
-        /* ── Footer ─────────────────────────────────────── */
 
         footer {
             margin-top: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-bottom: 28px;
+            padding-bottom: 32px;
+            gap: 2px;
         }
-
         footer p {
-            margin: 1px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.04em;
-            color: var(--ink-soft);
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem;
+            color: var(--ink-faint);
         }
 
         @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.001ms !important;
                 transition-duration: 0.001ms !important;
             }
         }
-
         @media (min-width: 640px) {
             main {
-                padding-top: 38px;
+                padding-top: 44px;
             }
         }
     </style>
 </head>
-
 <body>
     <header class="site-header">
         <a href="index.html" class="wordmark">Until</a>
         <a href="index.html" class="nav-link">Calculator</a>
     </header>
-
     <main>
         <p class="kicker">Guide</p>
         <h1>How Until works</h1>
@@ -331,7 +292,6 @@
             sync — just the thing you want, the amount you can set aside, and the math in between.
             This page walks through both ways to use it.
         </p>
-
         <nav class="toc" aria-label="On this page">
             <a href="#estimate">Estimate your timeline</a>
             <a href="#plan">Build a savings plan</a>
@@ -339,7 +299,6 @@
             <a href="#currency">Currencies and rates</a>
             <a href="#faq">Questions</a>
         </nav>
-
         <section id="estimate">
             <h2>Estimate your timeline</h2>
             <p>
@@ -356,7 +315,6 @@
                     days, weeks, months, or years until you've saved enough.</li>
             </ol>
         </section>
-
         <section id="plan">
             <h2>Build a savings plan</h2>
             <p>
@@ -374,7 +332,6 @@
                     simple duration estimate.</li>
             </ol>
         </section>
-
         <section id="results">
             <h2>Reading your results</h2>
             <p>
@@ -392,7 +349,6 @@
                 to calculate: you can already afford it.
             </p>
         </section>
-
         <section id="currency">
             <h2>Currencies and rates</h2>
             <p>
@@ -406,10 +362,8 @@
                 rather than an exact market conversion, especially for larger amounts.
             </p>
         </section>
-
         <section id="faq">
             <h2>Questions</h2>
-
             <details>
                 <summary>Why does the unit change from weeks to months when I hover the result?</summary>
                 <p>
@@ -418,7 +372,6 @@
                     month, and so on. The underlying answer doesn't change.
                 </p>
             </details>
-
             <details>
                 <summary>What does "extra amount needed" mean?</summary>
                 <p>
@@ -428,7 +381,6 @@
                     schedule.
                 </p>
             </details>
-
             <details>
                 <summary>Can I save in one currency and price the item in another?</summary>
                 <p>
@@ -436,7 +388,6 @@
                     converts between them automatically using its built-in reference rates.
                 </p>
             </details>
-
             <details>
                 <summary>Does Until store or sync anything?</summary>
                 <p>
@@ -446,9 +397,8 @@
             </details>
         </section>
     </main>
-
     <footer>
-        <p>Created by: Cj Banluta</p>
+        <p>Created by Cj Banluta</p>
         <p>All rights reserved 2026</p>
     </footer>
 </body>

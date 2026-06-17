@@ -1,19 +1,11 @@
-<!--
-
-App Name: Until
-
-Description: Until is a savings timeline calculator for people who know what they want to buy but not how long it'll take.
-Enter your target item, its price, and how much you can set aside at a given frequency — daily, weekly, monthly, or yearly — and the app tells you exactly when you'll reach your goal. It also generates a full savings plan with a projected start and end date, so you can commit to a schedule rather than just guess.
-No budgeting system. No account sync. Just: here's the thing, here's your rate — here's the date.
-
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Until — tell it what you want to buy and what you can set aside, and it tells you exactly when you'll have enough.">
+    <meta name="description"
+        content="Until — tell it what you want to buy and what you can set aside, and it tells you exactly when you'll have enough.">
     <title>Until — savings timeline calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,17 +17,13 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
     </header>
     <main>
         <p class="tagline">Tell it what you want and what you can set aside. It tells you the date.</p>
-
         <form action="" id="ftForm" novalidate>
-
             <div class="field-section">
                 <h2>The purchase</h2>
-
                 <div class="field">
                     <label for="prodName">Item name</label>
                     <input type="text" id="prodName" placeholder="e.g. Wireless headphones" required>
                 </div>
-
                 <div class="field-pair">
                     <div class="field">
                         <label for="prodQuan">Quantity</label>
@@ -53,12 +41,10 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                         </select>
                     </div>
                 </div>
-
                 <div class="field">
                     <label for="prodPrice">Unit price</label>
                     <input type="number" id="prodPrice" placeholder="0" required>
                 </div>
-
                 <div id="savstartdate" style="display: none;">
                     <div class="field">
                         <label for="targetPurDate">Starting date</label>
@@ -66,15 +52,13 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                     </div>
                 </div>
             </div>
-
             <div class="field-section">
                 <h2>The plan</h2>
-
                 <div class="field-pair">
                     <div class="field">
                         <label for="savFreq">Save</label>
                         <select id="savFreq" required>
-                            <option value="daily">Daily</option>
+                            <option value="daily" selected>Daily</option>
                             <option value="weekly">Weekly</option>
                             <option value="monthly">Monthly</option>
                             <option value="yearly">Yearly</option>
@@ -92,7 +76,6 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                         </select>
                     </div>
                 </div>
-
                 <div class="field">
                     <label for="savAm" id="savamLabel">
                         Amount to save
@@ -101,10 +84,8 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                     <input type="number" id="savAm" placeholder="0" required>
                 </div>
             </div>
-
             <button type="submit" id="etpButt" class="btn btn-primary">Calculate</button>
         </form>
-
         <button type="button" id="gensavplanbuttn" class="btn btn-secondary">Generate savings plan</button>
 
         <div id="resultboxFETCalc" class="res-box" style="display: none;">
@@ -129,8 +110,6 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                 <span id="sa" class="row-value"></span>
             </div>
 
-            <div class="stub-divider" aria-hidden="true"></div>
-
             <div id="FETCalcresLabel" class="hero-row">
                 <span class="hero-label">Until you can buy it</span>
                 <span id="etp" class="hero-value"></span>
@@ -143,7 +122,6 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                 <span class="row-label">Item</span>
                 <span id="pn2" class="row-value"></span>
             </div>
-
             <div id="detailsCon">
                 <div class="details">
                     <div class="row">
@@ -166,9 +144,7 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                     </div>
                 </div>
             </div>
-
             <div class="stub-divider" aria-hidden="true"></div>
-
             <div id="analysisModelCon">
                 <div class="box" id="startingDateCon"></div>
                 <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -177,13 +153,91 @@ No budgeting system. No account sync. Just: here's the thing, here's your rate �
                 </svg>
                 <div class="box" id="endingDateCon"></div>
             </div>
-
             <p class="summary-label">Summary</p>
             <p id="analText" class="summary-text"></p>
         </div>
+        <!-- ─── About ─── -->
+        <div class="section-divider"></div>
+        <section class="about-section">
+            <h2 class="about-heading">What is Until?</h2>
+            <p class="about-description">
+                Until is a savings timeline calculator for people who know <strong>what</strong> they want to buy
+                but not <strong>how long</strong> it'll take. Enter your target item, its price, and how much you
+                can set aside at a given frequency — daily, weekly, monthly, or yearly — and the app tells you
+                exactly when you'll reach your goal. It also generates a full savings plan with a projected start
+                and end date, so you can commit to a schedule rather than just guess.
+            </p>
+            <div class="features-grid">
+                <div class="feature">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                    </svg>
+                    <h3 class="feature-title">Set your target</h3>
+                    <p class="feature-desc">Name the item, set the price, pick a currency. That's it.</p>
+                </div>
+                <div class="feature">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <h3 class="feature-title">Define your pace</h3>
+                    <p class="feature-desc">Choose how much you can save and how often — daily to yearly.</p>
+                </div>
+                <div class="feature">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <path d="M9 16l2 2 4-4" />
+                    </svg>
+                    <h3 class="feature-title">Get the date</h3>
+                    <p class="feature-desc">Know exactly when you'll have enough, down to the day.</p>
+                </div>
+            </div>
+        </section>
+        <!-- ─── Creator ─── -->
+        <div class="section-divider"></div>
+        <section class="creator-section">
+            <h2 class="about-heading">From the maker</h2>
+            <div class="creator-card">
+                <div class="creator-header">
+                    <div class="profile-pic">
+                        <img src="20055f9e-1600-4322-94f1-7c68457f15ff.png" alt="Gwapo">
+                        <!-- Replace the initials below with an <img> tag:
+                             <img src="your-photo.jpg" alt="Cj Banluta"> -->
+                    </div>
+                    <div class="creator-info">
+                        <p class="creator-name">Cj Banluta</p>
+                        <p class="creator-role">Creator</p>
+                    </div>
+                </div>
+                <p class="creator-note-label">A note</p>
+                <p class="creator-note">
+                    I made this web app primarily for myself because, like many people, I spend an unreasonable amount
+                    of time looking at things I can't afford yet. 😆
+                    Whenever I want to buy something, I usually order it online. The problem is that I also enjoy
+                    browsing products and adding them to my mental wishlist long before my allowance and savings are
+                    ready for them. Naturally, this led to the age-old question:
+                    "How many more days must I survive before I can click 'Order Now'?"
+                    So I made this app.
+                    I actually built a similar app before called FundTimer, but let's just say it had a great
+                    personality and questionable looks. So I rebuilt it, gave it a glow-up, added a few new features,
+                    and renamed it Until.
+                    That's pretty much everything you need to know (probably).
+                    Feel free to use Until and may your savings grow faster than your wishlist.
+                    God bless you. 🙏
+                </p>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>Created by: Cj Banluta</p>
+        <p>Created by Cj Banluta</p>
         <p>All rights reserved 2026</p>
     </footer>
     <script src="./Backend/operations.js" type="module"></script>
