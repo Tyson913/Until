@@ -101,6 +101,9 @@ header.site-header {
 }
 
 .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
     font-size: 0.8rem;
@@ -275,6 +278,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.82rem;
@@ -306,7 +313,7 @@ input[type="number"]::-webkit-inner-spin-button {
     border: 1px solid var(--border);
     color: var(--ink-soft);
     margin-top: 12px;
-    padding: 2px;
+    padding: 12px 20px;
 }
 
 .btn-secondary:hover {
@@ -645,6 +652,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .feature-icon {
     width: 16px;
     height: 16px;
+    margin-top: 2px;
     flex-shrink: 0;
     color: var(--accent);
     opacity: 0.85;
@@ -765,17 +773,19 @@ input[type="number"]::-webkit-inner-spin-button {
 .creator-note-label {
     font-family: var(--f-sans);
     font-weight: 500;
-    font-size: 0.63rem;
+    font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin: 0;
-    display: block;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 .creator-note {
     margin: 0;
-    padding: 4px 0 4px 22px;
+    padding: 0px 0 4px 22px;
     border-left: 2px solid var(--sage);
 }
 
@@ -786,7 +796,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 0.93rem;
     line-height: 1.75;
     color: var(--ink-mid);
-    margin: 0;
+    margin: 0px;
     max-width: 58ch;
 }
 
@@ -795,23 +805,80 @@ footer {
     border-top: 1px solid var(--accent-deep);
     margin-top: 0;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    align-self: stretch;
-    padding: 18px 24px 28px;
-    gap: 6px;
+    gap: 22px;
+    padding: 24px 24px 32px;
     min-width: 100% !important;
     max-width: 640px;
 }
 
-footer p {
+.footer-meta p {
     margin: 0;
-    margin-top: 5px;
     font-family: var(--f-sans);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     letter-spacing: 0.03em;
-    color: var(--ink-faint);
+    color: var(--ink-soft);
 }
 
+.footer-meta p + p {
+    margin-top: 4px;
+}
+
+#socialsCon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#socialsCon label {
+    margin: 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 8px;
+}
+
+.social-link {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--border);
+    background: var(--paper-lift);
+    font-size: 0.85rem;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.social-facebook { color: #1877F2; }
+.social-instagram { color: #C13584; }
+.social-github { color: var(--ink); }
+.social-linkedin { color: #0A66C2; }
+
+.social-facebook:hover,
+.social-facebook:focus-visible { background: #1877F2; border-color: #1877F2; color: #fff; }
+.social-instagram:hover,
+.social-instagram:focus-visible { background: #C13584; border-color: #C13584; color: #fff; }
+.social-github:hover,
+.social-github:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.social-linkedin:hover,
+.social-linkedin:focus-visible { background: #0A66C2; border-color: #0A66C2; color: #fff; }
+
+@media (min-width: 560px) {
+    footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #socialsCon {
+        align-items: flex-end;
+    }
+}
 @keyframes stubIn {
     from { opacity: 0; transform: translateY(7px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -890,4 +957,13 @@ footer p {
 #gensavplanbuttn {
     border-color: transparent;
     background-color: transparent;
+}
+
+#socialsCon{
+    align-items: flex-start;    
+}
+
+.social-link,
+.social-link i {
+    text-decoration: none !important;
 }

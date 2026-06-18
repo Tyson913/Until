@@ -1,4 +1,3 @@
-
 /*
 
     Ajaw basaha ang code if allergic ka sa spaghetti
@@ -24,6 +23,8 @@ let mess;
 
 
 const savplanGenBttn = document.getElementById("gensavplanbuttn");
+const savplanGenBttnIcon = document.getElementById("gensavplanbuttnIcon");
+const savplanGenBttnLabel = document.getElementById("gensavplanbuttnLabel");
 
 const resbox1 = document.getElementById("resultboxFETCalc");
 const resbox2 = document.getElementById("resultboxSavPlanGen");
@@ -193,12 +194,14 @@ savplanGenBttn.addEventListener("click", function () {
         savstartdateCon.style.display = "none";
         resbox2.style.display = "none";
         mode = "default";
-        savplanGenBttn.textContent = "Generate Savings Plan";
+        savplanGenBttnIcon.className = "fa-solid fa-list-check";
+        savplanGenBttnLabel.textContent = "Generate savings plan";
     } else {
         savstartdateCon.style.display = "flex";
         resbox1.style.display = "none";
         mode = "savPlanGen";
-        savplanGenBttn.textContent = "Back To Default Mode";
+        savplanGenBttnIcon.className = "fa-solid fa-rotate-left";
+        savplanGenBttnLabel.textContent = "Back to default mode";
     }
 });
 
@@ -687,5 +690,3 @@ function fillResBox2(
         convertionsElem.style.display = 'none';
     });
 }
-
-

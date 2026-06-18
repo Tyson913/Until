@@ -9,11 +9,10 @@
     <title>Until — savings timeline calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header class="site-header">
         <a href="index.html" class="wordmark">Until</a>
-        <a href="manual.html" class="nav-link">Guide</a>
+        <a href="manual.html" class="nav-link"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Guide</a>
     </header>
     <main>
         <p class="tagline">Tell it what you want and what you can set aside. It tells you the date.</p>
@@ -85,9 +84,9 @@
                         <input type="number" id="savAm" placeholder="0" required>
                     </div>
                 </div>
-                <button type="submit" id="etpButt" class="btn btn-primary">Calculate</button>
+                <button type="submit" id="etpButt" class="btn btn-primary"><i class="fa-solid fa-calculator" aria-hidden="true"></i>Calculate</button>
             </form>
-            <button type="button" id="gensavplanbuttn" class="btn btn-secondary">Generate savings plan</button>
+            <button type="button" id="gensavplanbuttn" class="btn btn-secondary"><i class="fa-solid fa-list-check" id="gensavplanbuttnIcon" aria-hidden="true"></i><span id="gensavplanbuttnLabel">Generate savings plan</span></button>
         </div>
 
         <div id="resultboxFETCalc" class="res-box" style="display: none;">
@@ -169,39 +168,22 @@
             </p>
             <div class="features-grid">
                 <div class="feature">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="6" />
-                        <circle cx="12" cy="12" r="2" />
-                    </svg>
+                    <i class="fa-solid fa-bullseye feature-icon" aria-hidden="true"></i>
                     <h3 class="feature-title">Set your target</h3>
                     <p class="feature-desc">Name the item, set the price, pick a currency. That's it.</p>
                 </div>
                 <div class="feature">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                    </svg>
+                    <i class="fa-regular fa-clock feature-icon" aria-hidden="true"></i>
                     <h3 class="feature-title">Define your pace</h3>
                     <p class="feature-desc">Choose how much you can save and how often — daily to yearly.</p>
                 </div>
                 <div class="feature">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <path d="M9 16l2 2 4-4" />
-                    </svg>
+                    <i class="fa-solid fa-calendar-check feature-icon" aria-hidden="true"></i>
                     <h3 class="feature-title">Get the date</h3>
                     <p class="feature-desc">Know exactly when you'll have enough, down to the day.</p>
                 </div>
             </div>
         </section>
-
         <section class="creator-section">
             <h2 class="about-heading">From the creator</h2>
             <div class="creator-card">
@@ -214,7 +196,7 @@
                         <p class="creator-role">Creator</p>
                     </div>
                 </div>
-                <p class="creator-note-label">A note</p>
+                <p class="creator-note-label"><i class="fa-solid fa-quote-left" aria-hidden="true"></i>A note</p>
                 <p class="creator-note">
                     I made this web app primarily for myself because, like many people, I spend an unreasonable amount
                     of time looking at things I can't afford yet. 😆
@@ -234,12 +216,21 @@
         </section>
     </main>
     <footer>
-        <div>
+        <div class="footer-meta">
             <p>Created by Cj Banluta</p>
             <p>All rights reserved 2026</p>
         </div>
+        <div id="socialsCon">
+            <label>Follow me on:</label>
+            <div class="social-links">
+                <a class="social-link social-facebook" href="https://www.facebook.com/cj.e.banluta.2024" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                <a class="social-link social-instagram" href="https://www.instagram.com/cj_.log/?hl=en" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                <a class="social-link social-github" href="https://github.com/Tyson913" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                <a class="social-link social-linkedin" href="https://www.linkedin.com/in/cj-banluta-14462a32a/" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            </div>
+        </div>
     </footer>
+    <script src="https://kit.fontawesome.com/bd70f9279c.js" crossorigin="anonymous"></script>
     <script src="./Backend/operations.js" type="module"></script>
 </body>
-
 </html>
