@@ -1,9 +1,3 @@
-/*
-
-    Ajaw basaha ang code if allergic ka sa spaghetti
-
-*/
-
 import { addDays, addWeeks, addMonths, addYears } from "https://cdn.jsdelivr.net/npm/date-fns@4/+esm";
 
 const form = document.getElementById("ftForm");
@@ -21,14 +15,12 @@ let neededAmount;
 let startingDate;
 let mess;
 
-
 const savplanGenBttn = document.getElementById("gensavplanbuttn");
 const savplanGenBttnIcon = document.getElementById("gensavplanbuttnIcon");
 const savplanGenBttnLabel = document.getElementById("gensavplanbuttnLabel");
 
 const resbox1 = document.getElementById("resultboxFETCalc");
 const resbox2 = document.getElementById("resultboxSavPlanGen");
-
 
 const etpFreq = {
     daily: "day",
@@ -46,7 +38,6 @@ function updateFreqLabel() {
 savFreqDropdown.addEventListener("change", updateFreqLabel);
 
 updateFreqLabel();
-
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -230,7 +221,6 @@ function defFETCalc(
 
         totalPrice = initPrice * AmountConvertion[priceCurrency][savingsCurrency];
 
-
         if (totalPrice > savingsAmount) {
             initET = totalPrice / savingsAmount;
         }
@@ -250,7 +240,6 @@ function defFETCalc(
     }
     return [fet, neededAm];
 }
-
 
 function savplanGen
     (
@@ -278,7 +267,6 @@ function savplanGen
     )
 
     const timeNeeded = fet;
-
 
     if (savingsFreq === "daily") {
         fSavingsTimeEnd = addDays(startingDate, timeNeeded);
@@ -451,21 +439,27 @@ function fillResBox1(
     etp.addEventListener("mouseenter", () => {
         convertionsElem.style.display = 'flex';
     });
-
     etp.addEventListener("mouseleave", () => {
         convertionsElem.style.display = 'none';
     });
+
+    let etpTooltipOpen = false;
+    etp.addEventListener("click", (e) => {
+        e.stopPropagation();
+        etpTooltipOpen = !etpTooltipOpen;
+        convertionsElem.style.display = etpTooltipOpen ? 'flex' : 'none';
+    });
+    document.addEventListener("click", () => {
+        if (etpTooltipOpen) {
+            etpTooltipOpen = false;
+            convertionsElem.style.display = 'none';
+        }
+    });
 }
-/*
-    To-Do
 
-    1. I apply sa resbox1 ang new feature. (naa sa taas)
-
-*/
 const analBox1 = document.getElementById("startingDateCon");
 const analBox2 = document.getElementById("endingDateCon");
 const analText = document.getElementById("analText");
-
 
 function fillResBox2(
     productName,
@@ -498,7 +492,6 @@ function fillResBox2(
     let analysis;
     const productText = `${prodQuantity} ${productName}`;
     const unitText = prodQuantity === 1 ? "" : " each";
-
 
     const timeHighlight = `<span class="timeHiglight">${timeNeeded} ${etpFreq[savingsFreq]}</span>`;
     const analTexts = [
@@ -685,8 +678,20 @@ function fillResBox2(
     timeHighlightElem.addEventListener("mouseenter", () => {
         convertionsElem.style.display = 'flex';
     });
-
     timeHighlightElem.addEventListener("mouseleave", () => {
         convertionsElem.style.display = 'none';
+    });
+
+    let highlightTooltipOpen = false;
+    timeHighlightElem.addEventListener("click", (e) => {
+        e.stopPropagation();
+        highlightTooltipOpen = !highlightTooltipOpen;
+        convertionsElem.style.display = highlightTooltipOpen ? 'flex' : 'none';
+    });
+    document.addEventListener("click", () => {
+        if (highlightTooltipOpen) {
+            highlightTooltipOpen = false;
+            convertionsElem.style.display = 'none';
+        }
     });
 }

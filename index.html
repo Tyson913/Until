@@ -7,44 +7,62 @@
     <meta name="description"
         content="Until — tell it what you want to buy and what you can set aside, and it tells you exactly when you'll have enough.">
     <title>Until — savings timeline calculator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <header class="site-header">
-        <a href="index.html" class="wordmark">Until</a>
-        <a href="manual.html" class="nav-link"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Guide</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header" role="banner">
+        <a href="index.html" class="wordmark" aria-label="Until – home">Until</a>
+        <a href="manual.html" class="nav-link">
+            <i class="fa-solid fa-book-open" aria-hidden="true"></i>Guide
+        </a>
     </header>
-    <main>
+
+    <main id="main-content">
         <p class="tagline">Tell it what you want and what you can set aside. It tells you the date.</p>
+
         <div id="formCon">
-            <form action="" id="ftForm">
+            <form action="" id="ftForm" novalidate>
+
                 <div class="field-section">
                     <h2>The purchase</h2>
+
                     <div class="field">
                         <label for="prodName">Item name</label>
-                        <input type="text" id="prodName" placeholder="e.g. Wireless headphones" required>
+                        <input type="text" id="prodName" placeholder="e.g. Wireless headphones"
+                            autocomplete="off" autocorrect="off" spellcheck="false" required>
                     </div>
+
                     <div class="field-pair">
                         <div class="field">
                             <label for="prodQuan">Quantity</label>
-                            <input type="number" id="prodQuan" placeholder="1" required>
+                            <input type="number" id="prodQuan" placeholder="1"
+                                min="1" step="1" inputmode="numeric" required>
                         </div>
                         <div class="field">
                             <label for="prodCurr">Price currency</label>
                             <select id="prodCurr" required>
-                                <option value="php">Philippine Peso (PHP - ₱)</option>
-                                <option value="usd">US Dollar (USD - $)</option>
-                                <option value="eur">Euro (EUR - €)</option>
-                                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
-                                <option value="jpy">Japanese Yen (JPY - ¥)</option>
-                                <option value="gbp">British Pound (GBP - £)</option>
+                                <option value="php">Philippine Peso (PHP · ₱)</option>
+                                <option value="usd">US Dollar (USD · $)</option>
+                                <option value="eur">Euro (EUR · €)</option>
+                                <option value="cny">Chinese Yuan (CNY · ¥)</option>
+                                <option value="jpy">Japanese Yen (JPY · ¥)</option>
+                                <option value="gbp">British Pound (GBP · £)</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="field">
                         <label for="prodPrice">Unit price</label>
-                        <input type="number" id="prodPrice" placeholder="0" required>
+                        <input type="number" id="prodPrice" placeholder="0"
+                            min="0" step="any" inputmode="decimal" required>
                     </div>
+
                     <div id="savstartdate" style="display: none;">
                         <div class="field">
                             <label for="targetPurDate">Starting date</label>
@@ -52,11 +70,13 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="field-section">
                     <h2>The plan</h2>
+
                     <div class="field-pair">
                         <div class="field">
-                            <label for="savFreq">Save</label>
+                            <label for="savFreq">Frequency</label>
                             <select id="savFreq" required>
                                 <option value="daily" selected>Daily</option>
                                 <option value="weekly">Weekly</option>
@@ -67,29 +87,38 @@
                         <div class="field">
                             <label for="savCurr">Savings currency</label>
                             <select id="savCurr" required>
-                                <option value="php">Philippine Peso (PHP - ₱)</option>
-                                <option value="usd">US Dollar (USD - $)</option>
-                                <option value="eur">Euro (EUR - €)</option>
-                                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
-                                <option value="jpy">Japanese Yen (JPY - ¥)</option>
-                                <option value="gbp">British Pound (GBP - £)</option>
+                                <option value="php">Philippine Peso (PHP · ₱)</option>
+                                <option value="usd">US Dollar (USD · $)</option>
+                                <option value="eur">Euro (EUR · €)</option>
+                                <option value="cny">Chinese Yuan (CNY · ¥)</option>
+                                <option value="jpy">Japanese Yen (JPY · ¥)</option>
+                                <option value="gbp">British Pound (GBP · £)</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="field">
                         <label for="savAm" id="savamLabel">
                             Amount to save
                             <span id="freqUnit"> · per <span id="sfreqlabel"></span></span>
                         </label>
-                        <input type="number" id="savAm" placeholder="0" required>
+                        <input type="number" id="savAm" placeholder="0"
+                            min="0.01" step="any" inputmode="decimal" required>
                     </div>
                 </div>
-                <button type="submit" id="etpButt" class="btn btn-primary"><i class="fa-solid fa-calculator" aria-hidden="true"></i>Calculate</button>
+
+                <button type="submit" id="etpButt" class="btn btn-primary">
+                    <i class="fa-solid fa-calculator" aria-hidden="true"></i>Calculate
+                </button>
             </form>
-            <button type="button" id="gensavplanbuttn" class="btn btn-secondary"><i class="fa-solid fa-list-check" id="gensavplanbuttnIcon" aria-hidden="true"></i><span id="gensavplanbuttnLabel">Generate savings plan</span></button>
+
+            <button type="button" id="gensavplanbuttn" class="btn btn-secondary">
+                <i class="fa-solid fa-list-check" id="gensavplanbuttnIcon" aria-hidden="true"></i>
+                <span id="gensavplanbuttnLabel">Generate savings plan</span>
+            </button>
         </div>
 
-        <div id="resultboxFETCalc" class="res-box" style="display: none;">
+        <div id="resultboxFETCalc" class="res-box" style="display: none;" role="region" aria-label="Calculation result">
             <div class="row">
                 <span class="row-label">Item</span>
                 <span id="pn" class="row-value"></span>
@@ -110,15 +139,14 @@
                 <span id="savfreqLabel" class="row-label"></span>
                 <span id="sa" class="row-value"></span>
             </div>
-
             <div id="FETCalcresLabel" class="hero-row">
                 <span class="hero-label">Until you can buy it</span>
-                <span id="etp" class="hero-value"></span>
+                <span id="etp" class="hero-value" aria-live="polite"></span>
                 <span id="extraAm" class="hero-extra"></span>
             </div>
         </div>
 
-        <div id="resultboxSavPlanGen" class="res-box" style="display: none;">
+        <div id="resultboxSavPlanGen" class="res-box" style="display: none;" role="region" aria-label="Savings plan result">
             <div class="row" id="item">
                 <span class="row-label">Item</span>
                 <span id="pn2" class="row-value"></span>
@@ -146,7 +174,7 @@
                 </div>
             </div>
             <div class="stub-divider" aria-hidden="true"></div>
-            <div id="analysisModelCon">
+            <div id="analysisModelCon" aria-label="Savings period">
                 <div class="box" id="startingDateCon"></div>
                 <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
@@ -155,10 +183,11 @@
                 <div class="box" id="endingDateCon"></div>
             </div>
             <p class="summary-label">Summary</p>
-            <p id="analText" class="summary-text"></p>
+            <p id="analText" class="summary-text" aria-live="polite"></p>
         </div>
-        <section class="about-section">
-            <h2 class="about-heading">What is Until?</h2>
+
+        <section class="about-section" aria-labelledby="about-heading">
+            <h2 class="about-heading" id="about-heading">What is Until?</h2>
             <p class="about-description">
                 Until is a savings timeline calculator for people who know <strong>what</strong> they want to buy
                 but not <strong>how long</strong> it'll take. Enter your target item, its price, and how much you
@@ -166,37 +195,51 @@
                 exactly when you'll reach your goal. It also generates a full savings plan with a projected start
                 and end date, so you can commit to a schedule rather than just guess.
             </p>
-            <div class="features-grid">
-                <div class="feature">
+            <div class="features-grid" role="list">
+                <div class="feature" role="listitem">
                     <i class="fa-solid fa-bullseye feature-icon" aria-hidden="true"></i>
-                    <h3 class="feature-title">Set your target</h3>
-                    <p class="feature-desc">Name the item, set the price, pick a currency. That's it.</p>
+                    <div class="feature-body">
+                        <h3 class="feature-title">Set your target</h3>
+                        <p class="feature-desc">Name the item, set the price, pick a currency. That's it.</p>
+                    </div>
                 </div>
-                <div class="feature">
+                <div class="feature" role="listitem">
                     <i class="fa-regular fa-clock feature-icon" aria-hidden="true"></i>
-                    <h3 class="feature-title">Define your pace</h3>
-                    <p class="feature-desc">Choose how much you can save and how often — daily to yearly.</p>
+                    <div class="feature-body">
+                        <h3 class="feature-title">Define your pace</h3>
+                        <p class="feature-desc">Choose how much you can save and how often — daily to yearly.</p>
+                    </div>
                 </div>
-                <div class="feature">
+                <div class="feature" role="listitem">
                     <i class="fa-solid fa-calendar-check feature-icon" aria-hidden="true"></i>
-                    <h3 class="feature-title">Get the date</h3>
-                    <p class="feature-desc">Know exactly when you'll have enough, down to the day.</p>
+                    <div class="feature-body">
+                        <h3 class="feature-title">Get the date</h3>
+                        <p class="feature-desc">Know exactly when you'll have enough, down to the day.</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="creator-section">
-            <h2 class="about-heading">From the creator</h2>
+
+        <section class="creator-section" aria-labelledby="creator-heading">
+            <h2 class="about-heading" id="creator-heading">From the creator</h2>
             <div class="creator-card">
                 <div class="creator-header">
                     <div class="profile-pic">
-                        <img src="20055f9e-1600-4322-94f1-7c68457f15ff.png" alt="Gwapo">
+                        <img src="20055f9e-1600-4322-94f1-7c68457f15ff.png"
+                             alt="Gwapo"
+                             loading="lazy"
+                             width="66"
+                             height="66"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="creator-info">
                         <p class="creator-name">Cj Banluta</p>
                         <p class="creator-role">Creator</p>
                     </div>
                 </div>
-                <p class="creator-note-label"><i class="fa-solid fa-quote-left" aria-hidden="true"></i>A note</p>
+                <p class="creator-note-label">
+                    <i class="fa-solid fa-quote-left" aria-hidden="true"></i>A note
+                </p>
                 <p class="creator-note">
                     I made this web app primarily for myself because, like many people, I spend an unreasonable amount
                     of time looking at things I can't afford yet. 😆
@@ -215,22 +258,76 @@
             </div>
         </section>
     </main>
-    <footer>
+
+    <footer role="contentinfo">
         <div class="footer-meta">
             <p>Created by Cj Banluta</p>
             <p>All rights reserved 2026</p>
         </div>
         <div id="socialsCon">
-            <label>Follow me on:</label>
+            <p class="follow-label">Follow me on:</p>
             <div class="social-links">
-                <a class="social-link social-facebook" href="https://www.facebook.com/cj.e.banluta.2024" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                <a class="social-link social-instagram" href="https://www.instagram.com/cj_.log/?hl=en" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                <a class="social-link social-github" href="https://github.com/Tyson913" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                <a class="social-link social-linkedin" href="https://www.linkedin.com/in/cj-banluta-14462a32a/" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                <a class="social-link social-facebook"
+                   href="https://www.facebook.com/cj.e.banluta.2024"
+                   aria-label="Facebook"
+                   title="Facebook"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-instagram"
+                   href="https://www.instagram.com/cj_.log/?hl=en"
+                   aria-label="Instagram"
+                   title="Instagram"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-github"
+                   href="https://github.com/Tyson913"
+                   aria-label="GitHub"
+                   title="GitHub"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-linkedin"
+                   href="https://www.linkedin.com/in/cj-banluta-14462a32a/"
+                   aria-label="LinkedIn"
+                   title="LinkedIn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </footer>
+
     <script src="https://kit.fontawesome.com/bd70f9279c.js" crossorigin="anonymous"></script>
     <script src="./Backend/operations.js" type="module"></script>
+
+    <style>
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 20px;
+            z-index: 100;
+            background: var(--accent-deep);
+            color: var(--bg);
+            font-family: var(--f-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            text-decoration: none;
+            transition: top .15s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+            outline: none;
+        }
+    </style>
 </body>
+
 </html>

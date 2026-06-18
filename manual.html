@@ -9,50 +9,52 @@
     <title>Guide — Until</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..700&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --bg: #F0EAD6;
-            --paper-deep: #E6DDC4;
-            --paper-lift: #F7F3E8;
-            --surface: #FFFFFF;
-            --ink: #1A1A1A;
-            --ink-mid: #5A6054;
-            --ink-soft: #6E6E68;
-            --ink-faint: #A8A8A2;
-            --accent: #B07C2E;
-            --accent-deep: #8E6525;
-            --accent-bg: rgba(176, 124, 46, 0.07);
-            --sage: #4D7358;
-            --sage-deep: #3B5A44;
-            --border: #E6E3DC;
-            --border-light: #EFECE6;
-            --rule: #CFC5A2;
-            --radius: 10px;
-            --radius-sm: 6px;
-            --radius-xs: 2px;
-            --f-serif: 'Lora', Georgia, serif;
-            --f-mono: 'DM Mono', 'Courier New', monospace;
-            --f-sans: 'DM Sans', system-ui, sans-serif;
-        }
 
+        :root {
+            --bg:           #F0EAD6;
+            --paper-deep:   #E6DDC4;
+            --paper-lift:   #F7F3E8;
+            --surface:      #FFFFFF;
+            --ink:          #1A1A1A;
+            --ink-mid:      #5A6054;
+            --ink-soft:     #6E6E68;
+            --ink-faint:    #A8A8A2;
+            --accent:       #B07C2E;
+            --accent-deep:  #8E6525;
+            --accent-bg:    rgba(176, 124, 46, 0.07);
+            --sage:         #4D7358;
+            --sage-deep:    #3B5A44;
+            --border:       #E6E3DC;
+            --border-light: #EFECE6;
+            --rule:         #CFC5A2;
+            --radius:       10px;
+            --radius-sm:    6px;
+            --radius-xs:    2px;
+            --f-serif:      'Lora', Georgia, serif;
+            --f-mono:       'DM Mono', 'Courier New', monospace;
+            --f-sans:       'DM Sans', system-ui, sans-serif;
+        }
 
         *,
         *::before,
         *::after {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             height: 100%;
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
             min-height: 100vh;
             margin: 0;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -68,10 +70,9 @@
             color: var(--ink);
         }
 
-        a {
-            color: inherit;
-        }
+        a { color: inherit; }
 
+        img { max-width: 100%; display: block; }
 
         :focus-visible {
             outline: 2px solid var(--accent-deep);
@@ -79,11 +80,27 @@
             border-radius: var(--radius-xs);
         }
 
-
         .nav-link:focus-visible {
             outline: none;
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 20px;
+            z-index: 100;
+            background: var(--accent-deep);
+            color: var(--bg);
+            font-family: var(--f-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            text-decoration: none;
+        }
+        .skip-link:focus { top: 0; outline: none; }
 
         header.site-header {
             position: sticky;
@@ -93,55 +110,75 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 24px;
+            padding: 14px 20px;
             background: var(--bg);
             border-bottom: 1px solid var(--accent-deep);
             z-index: 10;
         }
 
+        @media (min-width: 640px) {
+            header.site-header {
+                padding: 18px 24px;
+            }
+        }
+
         .wordmark {
             font-family: var(--f-sans);
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             letter-spacing: -0.03em;
             text-decoration: none;
             color: var(--ink);
         }
 
+        @media (min-width: 480px) {
+            .wordmark { font-size: 1.25rem; }
+        }
+
         .nav-link {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
             font-family: var(--f-sans);
             font-weight: 500;
             font-size: 0.8rem;
             letter-spacing: 0.02em;
             text-decoration: none;
             color: var(--ink-soft);
-            padding-bottom: 2px;
+            padding: 10px 0;
             border-bottom: 1px solid transparent;
+            min-height: 44px;
             transition: color .15s ease, border-color .15s ease;
         }
 
-        .nav-link:hover,
-        .nav-link:focus-visible {
+        .nav-link:hover {
             color: var(--accent);
             border-color: var(--accent);
         }
-
 
         main,
         footer {
             width: 100%;
             max-width: 640px;
-            padding: 0 24px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        @media (min-width: 640px) {
+            main, footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
         }
 
         main {
-            padding-top: 36px;
+            padding-top: 28px;
             padding-bottom: 60px;
         }
 
+        @media (min-width: 640px) {
+            main { padding-top: 44px; }
+        }
 
         .kicker {
             font-family: var(--f-sans);
@@ -157,9 +194,9 @@
         h1 {
             font-family: var(--f-serif);
             font-weight: 600;
-            font-size: clamp(1.45rem, 5vw, 1.85rem);
+            font-size: clamp(1.35rem, 5vw, 1.85rem);
             letter-spacing: -0.01em;
-            margin: 0 0 16px;
+            margin: 0 0 14px;
             line-height: 1.25;
             color: var(--ink);
         }
@@ -169,17 +206,15 @@
             font-size: 0.9rem;
             line-height: 1.72;
             color: var(--ink-mid);
-            max-width: 58ch;
-            margin: 0 0 30px;
+            margin: 0 0 28px;
         }
-
 
         .toc {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px 20px;
-            padding: 14px 0;
-            margin-bottom: 36px;
+            gap: 6px 16px;
+            padding: 12px 0;
+            margin-bottom: 32px;
             border-top: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
         }
@@ -187,7 +222,7 @@
         .toc a {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
             font-family: var(--f-sans);
             font-weight: 500;
             font-size: 0.77rem;
@@ -195,7 +230,9 @@
             text-decoration: none;
             color: var(--ink-mid);
             border-bottom: 1px solid transparent;
-            padding-bottom: 1px;
+
+            padding: 6px 0;
+            min-height: 40px;
             transition: color .15s ease, border-color .15s ease;
         }
 
@@ -204,10 +241,9 @@
             border-color: var(--accent-deep);
         }
 
-
         section {
-            margin-bottom: 40px;
-            padding-bottom: 34px;
+            margin-bottom: 36px;
+            padding-bottom: 32px;
             border-bottom: 1px dotted var(--accent);
         }
 
@@ -235,7 +271,6 @@
             font-family: var(--f-sans);
             font-size: 0.9rem;
             line-height: 1.72;
-            max-width: 60ch;
             margin: 0 0 14px;
             color: var(--ink-mid);
         }
@@ -247,7 +282,6 @@
         section ol {
             margin: 0;
             padding-left: 1.2em;
-            max-width: 60ch;
         }
 
         section ol li {
@@ -280,7 +314,6 @@
 
         details {
             border-bottom: 1px dashed var(--rule);
-            padding: 15px 0;
         }
 
         details:first-of-type {
@@ -298,7 +331,12 @@
             font-weight: 600;
             font-size: 0.88rem;
             color: var(--ink);
+
+            padding: 16px 0;
+            min-height: 52px;
             transition: color .15s ease;
+            touch-action: manipulation;
+            user-select: none;
         }
 
         summary .q {
@@ -330,24 +368,34 @@
         }
 
         details p {
-            margin: 12px 0 0;
+            margin: 0 0 16px;
+            padding-left: 0;
             color: var(--ink-mid);
             font-size: 0.87rem;
             line-height: 1.68;
-            max-width: 58ch;
         }
 
         footer {
             border-top: 1px solid var(--accent-deep);
-            margin-top: 0;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 22px;
-            padding: 24px 24px 32px;
-            align-self: stretch;
-            min-width: 100%;
-            max-width: 640px;
+            gap: 20px;
+            padding-top: 22px;
+            padding-bottom: 32px;
+        }
+
+        @media (min-width: 560px) {
+            footer {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+            }
+
+            #socialsCon {
+                align-items: flex-start !important;
+            }
         }
 
         .footer-meta p {
@@ -358,9 +406,7 @@
             color: var(--ink-soft);
         }
 
-        .footer-meta p + p {
-            margin-top: 4px;
-        }
+        .footer-meta p + p { margin-top: 4px; }
 
         #socialsCon {
             display: flex;
@@ -369,13 +415,13 @@
             gap: 10px;
         }
 
-        #socialsCon label {
+        .follow-label {
             font-family: var(--f-sans);
             font-weight: 500;
             font-size: 0.68rem;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: var(--ink-faint);
+            color: var(--ink-soft);
             margin: 0;
         }
 
@@ -385,77 +431,58 @@
         }
 
         .social-link {
-            width: 34px;
-            height: 34px;
+
+            width: 44px;
+            height: 44px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: var(--radius-xs);
             border: 1px solid var(--border);
             background: var(--paper-lift);
-            font-size: 0.85rem;
-            transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+            font-size: 0.9rem;
+            text-decoration: none !important;
+            touch-action: manipulation;
+            transition: background-color .15s ease, color .15s ease, border-color .15s ease;
         }
 
-        .social-facebook { color: #1877F2; }
+        .social-link i { text-decoration: none !important; }
+
+        .social-facebook  { color: #1877F2; }
         .social-instagram { color: #C13584; }
-        .social-github { color: var(--ink); }
-        .social-linkedin { color: #0A66C2; }
+        .social-github    { color: var(--ink); }
+        .social-linkedin  { color: #0A66C2; }
 
         .social-facebook:hover,
-        .social-facebook:focus-visible { background: #1877F2; border-color: #1877F2; color: #fff; }
+        .social-facebook:focus-visible  { background: #1877F2; border-color: #1877F2; color: #fff; }
         .social-instagram:hover,
         .social-instagram:focus-visible { background: #C13584; border-color: #C13584; color: #fff; }
         .social-github:hover,
-        .social-github:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+        .social-github:focus-visible    { background: var(--ink); border-color: var(--ink); color: var(--bg); }
         .social-linkedin:hover,
-        .social-linkedin:focus-visible { background: #0A66C2; border-color: #0A66C2; color: #fff; }
-
-        @media (min-width: 560px) {
-            footer {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            #socialsCon {
-                align-items: flex-end;
-            }
-        }
+        .social-linkedin:focus-visible  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
 
         @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.001ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.001ms !important;
             }
         }
-
-        @media (min-width: 640px) {
-            main {
-                padding-top: 44px;
-            }
-        }
-        #socialsCon{
-            align-items: flex-start;    
-        }
-
-        .social-link,
-        .social-link i {
-            text-decoration: none !important;
-        }
     </style>
 </head>
 
 <body>
-    <header class="site-header">
-        <a href="index.html" class="wordmark">Until</a>
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-calculator" aria-hidden="true"></i>Calculator</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header" role="banner">
+        <a href="index.html" class="wordmark" aria-label="Until – home">Until</a>
+        <a href="index.html" class="nav-link">
+            <i class="fa-solid fa-calculator" aria-hidden="true"></i>Calculator
+        </a>
     </header>
-    <main>
+
+    <main id="main-content">
         <p class="kicker">Guide</p>
         <h1>How Until works</h1>
         <p class="intro">
@@ -463,6 +490,7 @@
             sync — just the thing you want, the amount you can set aside, and the math in between.
             This page walks through both ways to use it.
         </p>
+
         <nav class="toc" aria-label="On this page">
             <a href="#estimate"><i class="fa-regular fa-clock" aria-hidden="true"></i>Estimate your timeline</a>
             <a href="#plan"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i>Build a savings plan</a>
@@ -470,8 +498,9 @@
             <a href="#currency"><i class="fa-solid fa-coins" aria-hidden="true"></i>Currencies and rates</a>
             <a href="#faq"><i class="fa-regular fa-circle-question" aria-hidden="true"></i>Questions</a>
         </nav>
-        <section id="estimate">
-            <h2>Estimate your timeline</h2>
+
+        <section id="estimate" aria-labelledby="estimate-heading">
+            <h2 id="estimate-heading">Estimate your timeline</h2>
             <p>
                 This is the default mode — use it when you just want to know how long it'll take,
                 starting from today.
@@ -486,8 +515,9 @@
                     days, weeks, months, or years until you've saved enough.</li>
             </ol>
         </section>
-        <section id="plan">
-            <h2>Build a savings plan</h2>
+
+        <section id="plan" aria-labelledby="plan-heading">
+            <h2 id="plan-heading">Build a savings plan</h2>
             <p>
                 Use this mode when you want a concrete start and end date to commit to, rather
                 than a duration counted from today.
@@ -503,8 +533,9 @@
                     simple duration estimate.</li>
             </ol>
         </section>
-        <section id="results">
-            <h2>Reading your results</h2>
+
+        <section id="results" aria-labelledby="results-heading">
+            <h2 id="results-heading">Reading your results</h2>
             <p>
                 The large figure in the result stub is your estimated saving period — for
                 example, <em>6 weeks</em>. Hover or tap it to see that same period converted into
@@ -520,8 +551,9 @@
                 to calculate: you can already afford it.
             </p>
         </section>
-        <section id="currency">
-            <h2>Currencies and rates</h2>
+
+        <section id="currency" aria-labelledby="currency-heading">
+            <h2 id="currency-heading">Currencies and rates</h2>
             <p>
                 Until supports six currencies for both the item price and your savings: Philippine
                 Peso, US Dollar, Euro, Chinese Yuan, Japanese Yen, and British Pound. If your price
@@ -533,18 +565,29 @@
                 rather than an exact market conversion, especially for larger amounts.
             </p>
         </section>
-        <section id="faq">
-            <h2>Questions</h2>
+
+        <section id="faq" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Questions</h2>
             <details>
-                <summary><span class="q"><i class="fa-solid fa-repeat" aria-hidden="true"></i>Why does the unit change from weeks to months when I hover the result?</span></summary>
+                <summary>
+                    <span class="q">
+                        <i class="fa-solid fa-repeat" aria-hidden="true"></i>
+                        Why does the unit change from weeks to months when I hover the result?
+                    </span>
+                </summary>
                 <p>
-                    The hover card just re-expresses the same length of time in other units, so you
-                    can pick whichever one is easiest to plan around — a payday cadence, a calendar
-                    month, and so on. The underlying answer doesn't change.
+                    The hover card (or tap on mobile) re-expresses the same length of time in
+                    other units, so you can pick whichever one is easiest to plan around — a
+                    payday cadence, a calendar month, and so on. The underlying answer doesn't change.
                 </p>
             </details>
             <details>
-                <summary><span class="q"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i>What does "extra amount needed" mean?</span></summary>
+                <summary>
+                    <span class="q">
+                        <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+                        What does "extra amount needed" mean?
+                    </span>
+                </summary>
                 <p>
                     Until rounds your timeline down to a whole number of saving periods. If that
                     leaves a remainder — say your price doesn't divide evenly by your savings
@@ -553,14 +596,24 @@
                 </p>
             </details>
             <details>
-                <summary><span class="q"><i class="fa-solid fa-right-left" aria-hidden="true"></i>Can I save in one currency and price the item in another?</span></summary>
+                <summary>
+                    <span class="q">
+                        <i class="fa-solid fa-right-left" aria-hidden="true"></i>
+                        Can I save in one currency and price the item in another?
+                    </span>
+                </summary>
                 <p>
                     Yes. Set the price currency and the savings currency independently, and Until
                     converts between them automatically using its built-in reference rates.
                 </p>
             </details>
             <details>
-                <summary><span class="q"><i class="fa-solid fa-database" aria-hidden="true"></i>Does Until store or sync anything?</span></summary>
+                <summary>
+                    <span class="q">
+                        <i class="fa-solid fa-database" aria-hidden="true"></i>
+                        Does Until store or sync anything?
+                    </span>
+                </summary>
                 <p>
                     No. Nothing is saved between visits — every calculation starts fresh from what
                     you enter in the form.
@@ -568,21 +621,52 @@
             </details>
         </section>
     </main>
-    <footer>
+
+    <footer role="contentinfo">
         <div class="footer-meta">
             <p>Created by Cj Banluta</p>
             <p>All rights reserved 2026</p>
         </div>
         <div id="socialsCon">
-            <label>Follow me on:</label>
+            <p class="follow-label">Follow me on:</p>
             <div class="social-links">
-                <a class="social-link social-facebook" href="https://www.facebook.com/cj.e.banluta.2024" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                <a class="social-link social-instagram" href="https://www.instagram.com/cj_.log/?hl=en" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                <a class="social-link social-github" href="https://github.com/Tyson913" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                <a class="social-link social-linkedin" href="https://www.linkedin.com/in/cj-banluta-14462a32a/" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                <a class="social-link social-facebook"
+                   href="https://www.facebook.com/cj.e.banluta.2024"
+                   aria-label="Facebook"
+                   title="Facebook"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-instagram"
+                   href="https://www.instagram.com/cj_.log/?hl=en"
+                   aria-label="Instagram"
+                   title="Instagram"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-github"
+                   href="https://github.com/Tyson913"
+                   aria-label="GitHub"
+                   title="GitHub"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+                <a class="social-link social-linkedin"
+                   href="https://www.linkedin.com/in/cj-banluta-14462a32a/"
+                   aria-label="LinkedIn"
+                   title="LinkedIn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </footer>
+
     <script src="https://kit.fontawesome.com/bd70f9279c.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
