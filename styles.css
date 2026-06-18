@@ -1,42 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..700&display=swap');
 
 :root {
-    /* ── Surface layers ──────────────────────── */
+
     --bg:           #F0EAD6;
-    --paper-deep:   #E6DDC4;   /* receipt / result box surface */
-    --paper-lift:   #F7F3E8;   /* date boxes, tooltip bg */
+    --paper-deep:   #E6DDC4;   
+    --paper-lift:   #F7F3E8;   
     --surface:      #FFFFFF;
 
-    /* ── Text scale ──────────────────────────── */
+
     --ink:          #1A1A1A;
-    --ink-mid:      #5A6054;   /* secondary body text */
+    --ink-mid:      #5A6054;   
     --ink-soft:     #6E6E68;
     --ink-faint:    #A8A8A2;
 
-    /* ── Warm gold accent ────────────────────── */
+
     --accent:       #B07C2E;
     --accent-deep:  #8E6525;
     --accent-bg:    rgba(176, 124, 46, 0.07);
 
-    /* ── Organic sage ────────────────────────── */
+
     --sage:         #4D7358;
     --sage-deep:    #3B5A44;
 
-    /* ── Borders & rules ─────────────────────── */
+
     --border:       #E6E3DC;
     --border-light: #EFECE6;
-    --rule:         #CFC5A2;   /* receipt dashes, stronger contrast */
+    --rule:         #CFC5A2;   
 
-    /* ── Radii ───────────────────────────────── */
+
     --radius:       10px;
     --radius-sm:    6px;
-    --radius-xs:    2px;       /* receipt/ticket corners */
+    --radius-xs:    2px;       
 
-    /* ── Shadows ─────────────────────────────── */
+
     --shadow-sm:    0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
     --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
 
-    /* ── Typefaces ───────────────────────────── */
+
     --f-serif:      'Lora', Georgia, serif;
     --f-mono:       'DM Mono', 'Courier New', monospace;
     --f-sans:       'DM Sans', system-ui, sans-serif;
@@ -315,7 +315,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-/* ── Result box — receipt / ticket aesthetic ─ */
+
 .res-box {
     position: relative;
     display: flex;
@@ -327,7 +327,7 @@ input[type="number"]::-webkit-inner-spin-button {
     animation: stubIn .35s ease both;
 }
 
-/* Perforated tear-off edge */
+
 .res-box::before {
     content: "";
     position: absolute;
@@ -542,7 +542,7 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: default;
     gap: 10px;
     margin: 0;
-    /* reset global label styles */
+
     text-transform: none;
     letter-spacing: 0;
     font-size: inherit;
@@ -583,8 +583,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-/* ── About section ───────────────────────────────── */
-
 .about-section {
     margin-top: 5rem;
     padding: 50px 0 46px;
@@ -623,7 +621,6 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 500;
 }
 
-/* ── Feature rows — editorial divider list ───────── */
 .features-grid {
     display: flex;
     flex-direction: column;
@@ -670,7 +667,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* ── Creator section ─────────────────────────────── */
 .creator-section {
     margin-top: 0;
     padding: 50px 0 58px;
@@ -692,7 +688,6 @@ input[type="number"]::-webkit-inner-spin-button {
     font-style: normal;
 }
 
-/* Strip the card — let the content breathe */
 .creator-card {
     background: transparent;
     border: none;
@@ -710,7 +705,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-bottom: 0;
 }
 
-/* Ring profile photo — personal, not corporate */
 .profile-pic {
     width: 66px;
     height: 66px;
@@ -767,7 +761,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* Note label — small section marker */
+
 .creator-note-label {
     font-family: var(--f-sans);
     font-weight: 500;
@@ -779,7 +773,6 @@ input[type="number"]::-webkit-inner-spin-button {
     display: block;
 }
 
-/* Editorial serif note — the creator's voice */
 .creator-note {
     margin: 0;
     padding: 4px 0 4px 22px;
@@ -819,7 +812,6 @@ footer p {
     color: var(--ink-faint);
 }
 
-/* ── Keyframes ───────────────────────────────────── */
 @keyframes stubIn {
     from { opacity: 0; transform: translateY(7px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -860,7 +852,6 @@ footer p {
     }
 }
 
-/* ─── Responsive ─── */
 @media (max-width: 560px) {
     .feature {
         gap: 12px;
@@ -896,7 +887,6 @@ footer p {
     }
 }
 
-/* Generate savings plan button uses btn-secondary style by default */
 #gensavplanbuttn {
     border-color: transparent;
     background-color: transparent;
