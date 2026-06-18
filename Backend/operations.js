@@ -22,6 +22,7 @@ let neededAmount;
 let startingDate;
 let mess;
 
+
 const savplanGenBttn = document.getElementById("gensavplanbuttn");
 
 const resbox1 = document.getElementById("resultboxFETCalc");
@@ -45,6 +46,7 @@ savFreqDropdown.addEventListener("change", updateFreqLabel);
 
 updateFreqLabel();
 
+
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     prodName = document.getElementById("prodName").value.trim();
@@ -55,7 +57,10 @@ form.addEventListener("submit", function (e) {
     savingsCurr = document.getElementById("savCurr").value;
     savingsAm = Number(document.getElementById("savAm").value);
 
-
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
     if (mode === "default") {
         [estimatedTimePur, neededAmount] = defFETCalc(
             prodQuan,
