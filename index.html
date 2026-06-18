@@ -17,76 +17,78 @@
     </header>
     <main>
         <p class="tagline">Tell it what you want and what you can set aside. It tells you the date.</p>
-        <form action="" id="ftForm" novalidate>
-            <div class="field-section">
-                <h2>The purchase</h2>
-                <div class="field">
-                    <label for="prodName">Item name</label>
-                    <input type="text" id="prodName" placeholder="e.g. Wireless headphones" required>
-                </div>
-                <div class="field-pair">
+        <div id="formCon">
+            <form action="" id="ftForm" novalidate>
+                <div class="field-section">
+                    <h2>The purchase</h2>
                     <div class="field">
-                        <label for="prodQuan">Quantity</label>
-                        <input type="number" id="prodQuan" placeholder="1" required>
+                        <label for="prodName">Item name</label>
+                        <input type="text" id="prodName" placeholder="e.g. Wireless headphones" required>
+                    </div>
+                    <div class="field-pair">
+                        <div class="field">
+                            <label for="prodQuan">Quantity</label>
+                            <input type="number" id="prodQuan" placeholder="1" required>
+                        </div>
+                        <div class="field">
+                            <label for="prodCurr">Price currency</label>
+                            <select id="prodCurr" required>
+                                <option value="php">Philippine Peso (PHP - ₱)</option>
+                                <option value="usd">US Dollar (USD - $)</option>
+                                <option value="eur">Euro (EUR - €)</option>
+                                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
+                                <option value="jpy">Japanese Yen (JPY - ¥)</option>
+                                <option value="gbp">British Pound (GBP - £)</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="field">
-                        <label for="prodCurr">Price currency</label>
-                        <select id="prodCurr" required>
-                            <option value="php">Philippine Peso (PHP - ₱)</option>
-                            <option value="usd">US Dollar (USD - $)</option>
-                            <option value="eur">Euro (EUR - €)</option>
-                            <option value="cny">Chinese Yuan (CNY - CN¥)</option>
-                            <option value="jpy">Japanese Yen (JPY - ¥)</option>
-                            <option value="gbp">British Pound (GBP - £)</option>
-                        </select>
+                        <label for="prodPrice">Unit price</label>
+                        <input type="number" id="prodPrice" placeholder="0" required>
+                    </div>
+                    <div id="savstartdate" style="display: none;">
+                        <div class="field">
+                            <label for="targetPurDate">Starting date</label>
+                            <input type="date" id="targetPurDate">
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="prodPrice">Unit price</label>
-                    <input type="number" id="prodPrice" placeholder="0" required>
-                </div>
-                <div id="savstartdate" style="display: none;">
+                <div class="field-section">
+                    <h2>The plan</h2>
+                    <div class="field-pair">
+                        <div class="field">
+                            <label for="savFreq">Save</label>
+                            <select id="savFreq" required>
+                                <option value="daily" selected>Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="savCurr">Savings currency</label>
+                            <select id="savCurr" required>
+                                <option value="php">Philippine Peso (PHP - ₱)</option>
+                                <option value="usd">US Dollar (USD - $)</option>
+                                <option value="eur">Euro (EUR - €)</option>
+                                <option value="cny">Chinese Yuan (CNY - CN¥)</option>
+                                <option value="jpy">Japanese Yen (JPY - ¥)</option>
+                                <option value="gbp">British Pound (GBP - £)</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="field">
-                        <label for="targetPurDate">Starting date</label>
-                        <input type="date" id="targetPurDate">
+                        <label for="savAm" id="savamLabel">
+                            Amount to save
+                            <span id="freqUnit"> · per <span id="sfreqlabel"></span></span>
+                        </label>
+                        <input type="number" id="savAm" placeholder="0" required>
                     </div>
                 </div>
-            </div>
-            <div class="field-section">
-                <h2>The plan</h2>
-                <div class="field-pair">
-                    <div class="field">
-                        <label for="savFreq">Save</label>
-                        <select id="savFreq" required>
-                            <option value="daily" selected>Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label for="savCurr">Savings currency</label>
-                        <select id="savCurr" required>
-                            <option value="php">Philippine Peso (PHP - ₱)</option>
-                            <option value="usd">US Dollar (USD - $)</option>
-                            <option value="eur">Euro (EUR - €)</option>
-                            <option value="cny">Chinese Yuan (CNY - CN¥)</option>
-                            <option value="jpy">Japanese Yen (JPY - ¥)</option>
-                            <option value="gbp">British Pound (GBP - £)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="savAm" id="savamLabel">
-                        Amount to save
-                        <span id="freqUnit"> · per <span id="sfreqlabel"></span></span>
-                    </label>
-                    <input type="number" id="savAm" placeholder="0" required>
-                </div>
-            </div>
-            <button type="submit" id="etpButt" class="btn btn-primary">Calculate</button>
-        </form>
-        <button type="button" id="gensavplanbuttn" class="btn btn-secondary">Generate savings plan</button>
+                <button type="submit" id="etpButt" class="btn btn-primary">Calculate</button>
+            </form>
+            <button type="button" id="gensavplanbuttn" class="btn btn-secondary">Generate savings plan</button>
+        </div>
 
         <div id="resultboxFETCalc" class="res-box" style="display: none;">
             <div class="row">
@@ -157,7 +159,6 @@
             <p id="analText" class="summary-text"></p>
         </div>
         <!-- ─── About ─── -->
-        <div class="section-divider"></div>
         <section class="about-section">
             <h2 class="about-heading">What is Until?</h2>
             <p class="about-description">
@@ -202,9 +203,8 @@
             </div>
         </section>
         <!-- ─── Creator ─── -->
-        <div class="section-divider"></div>
         <section class="creator-section">
-            <h2 class="about-heading">From the maker</h2>
+            <h2 class="about-heading">From the creator</h2>
             <div class="creator-card">
                 <div class="creator-header">
                     <div class="profile-pic">
@@ -237,8 +237,10 @@
         </section>
     </main>
     <footer>
-        <p>Created by Cj Banluta</p>
-        <p>All rights reserved 2026</p>
+        <div>
+            <p>Created by Cj Banluta</p>
+            <p>All rights reserved 2026</p>
+        </div>
     </footer>
     <script src="./Backend/operations.js" type="module"></script>
 </body>
