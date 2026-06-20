@@ -60,7 +60,7 @@
                     <div class="field">
                         <label for="prodPrice">Unit price</label>
                         <input type="number" id="prodPrice" placeholder="0"
-                            min="0" step="any" inputmode="decimal" required>
+                            min="0.01" step="any" inputmode="decimal" required>
                     </div>
 
                     <div id="savstartdate" style="display: none;">
@@ -104,6 +104,26 @@
                         </label>
                         <input type="number" id="savAm" placeholder="0"
                             min="0.01" step="any" inputmode="decimal" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="currBalance">
+                            Current Savings Balance
+                        </label>
+                        <input type="number" placeholder="0"
+                            min="0.01" step="any" inputmode="decimal" required id="currBalance">
+                    </div>
+
+                    <div class="field">
+                        <label for="savBalanceCurr">Savings Balance Currency</label>
+                            <select id="savBalanceCurr" required>
+                                <option value="php">Philippine Peso (PHP · ₱)</option>
+                                <option value="usd">US Dollar (USD · $)</option>
+                                <option value="eur">Euro (EUR · €)</option>
+                                <option value="cny">Chinese Yuan (CNY · ¥)</option>
+                                <option value="jpy">Japanese Yen (JPY · ¥)</option>
+                                <option value="gbp">British Pound (GBP · £)</option>
+                            </select>
                     </div>
                 </div>
 

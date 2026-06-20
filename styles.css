@@ -90,7 +90,6 @@ select:focus-visible {
 .nav-link:focus-visible {
     outline: none;
     color: var(--accent);
-    border-color: var(--accent);
 }
 
 header.site-header {
@@ -147,7 +146,6 @@ header.site-header {
 
 .nav-link:hover {
     color: var(--accent);
-    border-color: var(--accent);
 }
 
 main,

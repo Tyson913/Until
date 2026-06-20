@@ -14,6 +14,8 @@ let estimatedTimePur;
 let neededAmount;
 let startingDate;
 let mess;
+let currBalance;
+let BalCurrency;
 
 const savplanGenBttn = document.getElementById("gensavplanbuttn");
 const savplanGenBttnIcon = document.getElementById("gensavplanbuttnIcon");
@@ -48,6 +50,8 @@ form.addEventListener("submit", function (e) {
     savingsFreq = document.getElementById("savFreq").value;
     savingsCurr = document.getElementById("savCurr").value;
     savingsAm = Number(document.getElementById("savAm").value);
+    currBalance = Number(document.getElementById("currBalance").value);
+    BalCurrency = document.getElementById("savBalanceCurr").value;
 
     if (!form.checkValidity()) {
         form.reportValidity();
@@ -202,13 +206,21 @@ function defFETCalc(
     unitPrice,
     savingsCurrency,
     savingsFreq,
-    savingsAmount
+    savingsAmount,
+    currentBalance,
+    balanceCurrency
 ) {
     let totalPrice;
     let initET = 0;
     let fet;
-    let neededAm;
+    let neededAm = 0;
     let initPrice;
+
+    // Utruhon ang archi
+    if (savingsAmount === 0) {
+        mess.textContent = "";
+        return [0,0];
+    }
 
     if (savingsCurrency === priceCurrency) {
         totalPrice = unitPrice * prodQuantity;
@@ -221,13 +233,11 @@ function defFETCalc(
 
         totalPrice = initPrice * AmountConvertion[priceCurrency][savingsCurrency];
 
-        if (totalPrice > savingsAmount) {
-            initET = totalPrice / savingsAmount;
-        }
+        initET = totalPrice / savingsAmount;
     }
 
-    if (savingsAmount > totalPrice) {
-        return [0, 0]
+    if (currentBalance >= totalPrice) {
+        return [0, 0];
     }
 
     if (!Number.isInteger(initET)) {
@@ -236,7 +246,15 @@ function defFETCalc(
     }
     else {
         fet = initET;
-        neededAm = 0;
+    }
+
+    if (neededAm >= currentBalance) {
+        neededAm = neededAm - currentBalance;
+    }
+    else { 
+        initET = (totalPrice - currentBalance) / savingsAmount; 
+        fet = Math.trunc(initET);
+        neededAm = Math.trunc(totalPrice - (fet * savingsAmount));
     }
     return [fet, neededAm];
 }
