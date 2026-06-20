@@ -78,7 +78,6 @@ function showMessageBox() {
         const scrollText = document.createElement('small');
         scrollText.textContent = "Scroll to dismiss";
         mess.appendChild(scrollText);
-
         messBoxCon.appendChild(mess);
     }
 

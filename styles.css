@@ -410,15 +410,15 @@ input[type="date"] {
 }
 
 .res-box {
+    margin-top: 6.4rem !important;
     position: relative;
     display: flex;
     flex-direction: column;
     background: var(--paper-deep);
     border-radius: 0 0 var(--radius-xs) var(--radius-xs);
-
     padding: 20px 16px 18px;
-    margin-top: 28px;
     animation: stubIn .4s var(--ease-arrive) both;
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 480px) {
