@@ -23,6 +23,27 @@ const savplanGenBttnLabel = document.getElementById("gensavplanbuttnLabel");
 const resbox1 = document.getElementById("resultboxFETCalc");
 const resbox2 = document.getElementById("resultboxSavPlanGen");
 
+
+function revealResultBox(box) {
+    const alreadyVisible = box.style.display === "flex";
+
+    box.style.display = "flex";
+
+    if (alreadyVisible) {
+        box.classList.remove("is-updated");
+        void box.offsetWidth;
+        box.classList.add("is-updated");
+        box.addEventListener("animationend", () => {
+            box.classList.remove("is-updated");
+        }, { once: true });
+    }
+
+    box.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
 const etpFreq = {
     daily: "day",
     weekly: "week",
@@ -39,6 +60,60 @@ function updateFreqLabel() {
 savFreqDropdown.addEventListener("change", updateFreqLabel);
 
 updateFreqLabel();
+
+const messBoxCon = document.getElementById("messBoxCon");
+let messageDismissScrollHandler = null;
+let messageLeaveAnimHandler = null;
+
+function showMessageBox() {
+    let mess = messBoxCon.querySelector(".messageBox");
+
+    if (!mess) {
+        mess = document.createElement('div');
+        mess.classList.add("messageBox");
+        mess.setAttribute("role", "status");
+        mess.setAttribute("aria-live", "polite");
+        mess.textContent = "Your balance is enough to buy the product right now!!";
+
+        const scrollText = document.createElement('small');
+        scrollText.textContent = "Scroll to dismiss";
+        mess.appendChild(scrollText);
+
+        messBoxCon.appendChild(mess);
+    }
+
+
+    if (messageLeaveAnimHandler) {
+        mess.removeEventListener("animationend", messageLeaveAnimHandler);
+        messageLeaveAnimHandler = null;
+    }
+    mess.classList.remove("is-leaving");
+
+
+    mess.style.animation = "none";
+    void mess.offsetWidth;
+    mess.style.animation = "";
+
+    messBoxCon.style.display = "flex";
+
+    if (messageDismissScrollHandler) {
+        window.removeEventListener("scroll", messageDismissScrollHandler);
+    }
+    messageDismissScrollHandler = () => dismissMessageBox(mess);
+    window.addEventListener("scroll", messageDismissScrollHandler, { once: true });
+}
+
+function dismissMessageBox(mess) {
+    if (mess.classList.contains("is-leaving")) return;
+
+    mess.classList.add("is-leaving");
+    messageLeaveAnimHandler = () => {
+        messBoxCon.style.display = "none";
+        mess.classList.remove("is-leaving");
+        messageLeaveAnimHandler = null;
+    };
+    mess.addEventListener("animationend", messageLeaveAnimHandler, { once: true });
+}
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -82,30 +157,10 @@ form.addEventListener("submit", function (e) {
                 currBalance,
                 BalCurrency
             );
-            resbox1.style.display = 'flex';
-            resbox1.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            })
+            revealResultBox(resbox1);
         }
         else {
-            const messBoxCon = document.getElementById("messBoxCon");
-
-            if (!messBoxCon.querySelector(".messageBox")) {
-                const mess = document.createElement('div');
-                mess.textContent = "Your balance is enough to buy the product right now!!";
-                mess.classList.add("messageBox");
-
-                const scrollText = document.createElement('small');
-                scrollText.textContent = "Scroll to dismiss";
-                scrollText.style.textUnderlineOffset = "2px";
-                scrollText.style.textDecoration = "underline";
-
-                mess.appendChild(scrollText);
-                messBoxCon.appendChild(mess);
-            }
-            messBoxCon.style.display = "flex";
-            window.addEventListener("scroll", () => { messBoxCon.style.display = 'none'; });
+            showMessageBox();
         }
         form.reset();
     }
@@ -141,12 +196,8 @@ form.addEventListener("submit", function (e) {
             currBalance,
             BalCurrency
         );
-        resbox2.style.display = 'flex';
         form.reset();
-        resbox1.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        })
+        revealResultBox(resbox2);
     }
 });
 

@@ -28,6 +28,9 @@
 
     --shadow-sm:    0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
     --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+    --shadow-lg:    0 18px 40px rgba(26, 26, 26, 0.16), 0 6px 16px rgba(26, 26, 26, 0.08);
+
+    --ease-arrive:  cubic-bezier(0.22, 1, 0.36, 1);
 
     --f-serif:      'Lora', Georgia, serif;
     --f-mono:       'DM Mono', 'Courier New', monospace;
@@ -416,7 +419,7 @@ input[type="date"] {
 
     padding: 20px 16px 18px;
     margin-top: 28px;
-    animation: stubIn .35s ease both;
+    animation: stubIn .4s var(--ease-arrive) both;
 }
 
 @media (min-width: 480px) {
@@ -443,6 +446,10 @@ input[type="date"] {
     background-image: radial-gradient(circle at 7px 4px, var(--bg) 4px, transparent 4.5px);
     background-size: 14px 10px;
     background-repeat: repeat-x;
+}
+
+.res-box.is-updated {
+    animation: resultRefresh .6s var(--ease-arrive);
 }
 
 .row {
@@ -627,6 +634,7 @@ input[type="date"] {
     left: 0%;
     height: 100px;
     width: 100%;
+    z-index: 30;
 }
 
 .messageBox {
@@ -638,13 +646,31 @@ input[type="date"] {
     font-size: 0.85rem;
     line-height: 1.58;
     color: var(--sage-deep);
-    background: var(--paper-deep);
+    background: var(--paper-lift);
     border: 1px solid var(--rule);
     border-left: 2.5px solid var(--sage);
     border-radius: var(--radius-xs);
     padding: 10px !important;
     height: 60px;
     width: 370px;
+    max-width: calc(100vw - 40px);
+
+    box-shadow: var(--shadow-lg);
+
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+    animation: messageIn .32s var(--ease-arrive) forwards;
+}
+
+.messageBox small {
+    text-underline-offset: 2px;
+    text-decoration: underline;
+}
+
+
+.messageBox.is-leaving {
+    animation: messageOut .22s ease forwards;
+    pointer-events: none;
 }
 
 #convertionsCon {
@@ -1044,6 +1070,22 @@ footer {
 @keyframes tooltipIn {
     from { opacity: 0; transform: translateY(4px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes resultRefresh {
+    0%   { box-shadow: inset 0 0 0 0 rgba(176, 124, 46, 0); }
+    35%  { box-shadow: inset 0 0 0 2px rgba(176, 124, 46, 0.35); }
+    100% { box-shadow: inset 0 0 0 0 rgba(176, 124, 46, 0); }
+}
+
+@keyframes messageIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes messageOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-10px) scale(0.97); }
 }
 
 @media (prefers-reduced-motion: reduce) {
