@@ -13,7 +13,6 @@ let savingsAm;
 let estimatedTimePur;
 let neededAmount;
 let startingDate;
-let mess;
 let currBalance;
 let BalCurrency;
 
@@ -64,8 +63,11 @@ form.addEventListener("submit", function (e) {
             prodPrice,
             savingsCurr,
             savingsFreq,
-            savingsAm
+            savingsAm,
+            currBalance,
+            BalCurrency
         );
+        console.log(estimatedTimePur, neededAmount);
         if (estimatedTimePur !== 0 && neededAmount !== 0) {
             fillResBox1(
                 prodName,
@@ -76,14 +78,34 @@ form.addEventListener("submit", function (e) {
                 savingsFreq,
                 savingsAm,
                 estimatedTimePur,
-                neededAmount
+                neededAmount,
+                currBalance,
+                BalCurrency
             );
             resbox1.style.display = 'flex';
+            resbox1.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            })
         }
         else {
-            mess = document.createElement('div');
-            mess.textContent = "Your balance is enough to buy the product right now";
-            mess.classList.add("messageBox");
+            const messBoxCon = document.getElementById("messBoxCon");
+
+            if (!messBoxCon.querySelector(".messageBox")) {
+                const mess = document.createElement('div');
+                mess.textContent = "Your balance is enough to buy the product right now!!";
+                mess.classList.add("messageBox");
+
+                const scrollText = document.createElement('small');
+                scrollText.textContent = "Scroll to dismiss";
+                scrollText.style.textUnderlineOffset = "2px";
+                scrollText.style.textDecoration = "underline";
+
+                mess.appendChild(scrollText);
+                messBoxCon.appendChild(mess);
+            }
+            messBoxCon.style.display = "flex";
+            window.addEventListener("scroll", () => { messBoxCon.style.display = 'none'; });
         }
         form.reset();
     }
@@ -115,10 +137,16 @@ form.addEventListener("submit", function (e) {
             endingDate,
             savingsCurr,
             savingsFreq,
-            savingsAm
+            savingsAm,
+            currBalance,
+            BalCurrency
         );
         resbox2.style.display = 'flex';
         form.reset();
+        resbox1.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        })
     }
 });
 
@@ -217,10 +245,6 @@ function defFETCalc(
     let initPrice;
 
     // Utruhon ang archi
-    if (savingsAmount === 0) {
-        mess.textContent = "";
-        return [0, 0];
-    }
 
     if (savingsCurrency === priceCurrency) {
         totalPrice = unitPrice * prodQuantity;
@@ -230,10 +254,13 @@ function defFETCalc(
     }
     else {
         initPrice = unitPrice * prodQuantity;
-
         totalPrice = initPrice * AmountConvertion[priceCurrency][savingsCurrency];
-
         initET = totalPrice / savingsAmount;
+    }
+
+
+    if (currentBalance >= totalPrice) {
+        return [0, 0];
     }
 
     if (!Number.isInteger(initET)) {
@@ -246,10 +273,6 @@ function defFETCalc(
 
     if (balanceCurrency !== savingsCurrency) {
         currentBalance = currentBalance * AmountConvertion[balanceCurrency][savingsCurrency];
-    }
-
-    if (currentBalance >= totalPrice) {
-        return [0, 0];
     }
 
     if (neededAm >= currentBalance) {
@@ -315,7 +338,9 @@ function fillResBox1(
     savingsFreq,
     savingsAmount,
     estimatedTimePur,
-    neededAmount
+    neededAmount,
+    currentBalance,
+    BalCurrency
 ) {
     const extraAm = document.getElementById("extraAm");
     const pn = document.getElementById("pn");
@@ -325,6 +350,8 @@ function fillResBox1(
     const sa = document.getElementById("sa");
     const etp = document.getElementById("etp");
     const savFreqResLabel = document.getElementById("savfreqRes");
+    const currBal = document.getElementById("cb");
+    currBal.textContent = `${currencySigns[BalCurrency]}${currentBalance}`;
     pn.textContent = productName;
     pquan.textContent = prodQuantity;
     up.textContent = `${currencySigns[priceCurrency]}${unitPrice}`;
@@ -478,7 +505,6 @@ function fillResBox1(
         }
     });
 }
-
 const analBox1 = document.getElementById("startingDateCon");
 const analBox2 = document.getElementById("endingDateCon");
 const analText = document.getElementById("analText");
@@ -493,7 +519,9 @@ function fillResBox2(
     endingDate,
     savingsCurrency,
     savingsFreq,
-    savingsAmount
+    savingsAmount,
+    currentBalance,
+    BalCurrency
 ) {
     const pn2 = document.getElementById("pn2");
     const pquan2 = document.getElementById("pquan2");
@@ -501,12 +529,15 @@ function fillResBox2(
     const sf2 = document.getElementById("sf2");
     const sa2 = document.getElementById("sa2");
     const etp2 = document.getElementById("etp2");
+    const currBal2 = document.getElementById("cb2");
+
 
     pn2.textContent = productName;
     pquan2.textContent = prodQuantity;
     up2.textContent = `${currencySigns[priceCurrency]}${unitPrice}`;
     sf2.textContent = savingsFreq;
     sa2.textContent = `${currencySigns[savingsCurrency]}${savingsAmount}`;
+    currBal2.textContent = `${currencySigns[BalCurrency]}${currentBalance}`;
 
     const formattedSavingsAmount = `${currencySigns[savingsCurrency]}${savingsAmount}`;
     const formattedUnitPrice = `${currencySigns[priceCurrency]}${unitPrice}`;

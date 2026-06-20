@@ -34,15 +34,15 @@
 
                     <div class="field">
                         <label for="prodName">Item name</label>
-                        <input type="text" id="prodName" placeholder="e.g. Wireless headphones"
-                            autocomplete="off" autocorrect="off" spellcheck="false" required>
+                        <input type="text" id="prodName" placeholder="e.g. Wireless headphones" autocomplete="off"
+                            autocorrect="off" spellcheck="false" required>
                     </div>
 
                     <div class="field-pair">
                         <div class="field">
                             <label for="prodQuan">Quantity</label>
-                            <input type="number" id="prodQuan" placeholder="1"
-                                min="1" step="1" inputmode="numeric" required>
+                            <input type="number" id="prodQuan" placeholder="1" min="1" step="1" inputmode="numeric"
+                                required>
                         </div>
                         <div class="field">
                             <label for="prodCurr">Price currency</label>
@@ -59,8 +59,8 @@
 
                     <div class="field">
                         <label for="prodPrice">Unit price</label>
-                        <input type="number" id="prodPrice" placeholder="0"
-                            min="0.01" step="any" inputmode="decimal" required>
+                        <input type="number" id="prodPrice" placeholder="0" min="0.01" step="any" inputmode="decimal"
+                            required>
                     </div>
 
                     <div id="savstartdate" style="display: none;">
@@ -102,28 +102,28 @@
                             Amount to save
                             <span id="freqUnit"> · per <span id="sfreqlabel"></span></span>
                         </label>
-                        <input type="number" id="savAm" placeholder="0"
-                            min="0.01" step="any" inputmode="decimal" required>
+                        <input type="number" id="savAm" placeholder="0" min="0.01" step="any" inputmode="decimal"
+                            required>
                     </div>
 
                     <div class="field">
                         <label for="currBalance">
                             Current Savings Balance
                         </label>
-                        <input type="number" placeholder="0"
-                            min="0.01" step="any" inputmode="decimal" required id="currBalance">
+                        <input type="number" placeholder="0" min="0.01" step="any" inputmode="decimal" required
+                            id="currBalance">
                     </div>
 
                     <div class="field">
                         <label for="savBalanceCurr">Savings Balance Currency</label>
-                            <select id="savBalanceCurr" required>
-                                <option value="php">Philippine Peso (PHP · ₱)</option>
-                                <option value="usd">US Dollar (USD · $)</option>
-                                <option value="eur">Euro (EUR · €)</option>
-                                <option value="cny">Chinese Yuan (CNY · ¥)</option>
-                                <option value="jpy">Japanese Yen (JPY · ¥)</option>
-                                <option value="gbp">British Pound (GBP · £)</option>
-                            </select>
+                        <select id="savBalanceCurr" required>
+                            <option value="php">Philippine Peso (PHP · ₱)</option>
+                            <option value="usd">US Dollar (USD · $)</option>
+                            <option value="eur">Euro (EUR · €)</option>
+                            <option value="cny">Chinese Yuan (CNY · ¥)</option>
+                            <option value="jpy">Japanese Yen (JPY · ¥)</option>
+                            <option value="gbp">British Pound (GBP · £)</option>
+                        </select>
                     </div>
                 </div>
 
@@ -138,6 +138,8 @@
             </button>
         </div>
 
+        <div id="messBoxCon" style="display: none;">
+        </div>
         <div id="resultboxFETCalc" class="res-box" style="display: none;" role="region" aria-label="Calculation result">
             <div class="row">
                 <span class="row-label">Item</span>
@@ -159,6 +161,10 @@
                 <span id="savfreqLabel" class="row-label"></span>
                 <span id="sa" class="row-value"></span>
             </div>
+            <div class="row" id="curBalRes">
+                <span class="row-label">Current balance</span>
+                <span id="cb" class="row-value"></span>
+            </div>
             <div id="FETCalcresLabel" class="hero-row">
                 <span class="hero-label">Until you can buy it</span>
                 <span id="etp" class="hero-value" aria-live="polite"></span>
@@ -166,7 +172,8 @@
             </div>
         </div>
 
-        <div id="resultboxSavPlanGen" class="res-box" style="display: none;" role="region" aria-label="Savings plan result">
+        <div id="resultboxSavPlanGen" class="res-box" style="display: none;" role="region"
+            aria-label="Savings plan result">
             <div class="row" id="item">
                 <span class="row-label">Item</span>
                 <span id="pn2" class="row-value"></span>
@@ -190,6 +197,12 @@
                     <div class="row">
                         <span class="row-label">Amount</span>
                         <span id="sa2" class="row-value"></span>
+                    </div>
+                </div>
+                <div class="details" id="detail3">
+                    <div class="row">
+                        <span class="row-label">Current balance</span>
+                        <span id="cb2" class="row-value"></span>
                     </div>
                 </div>
             </div>
@@ -245,12 +258,8 @@
             <div class="creator-card">
                 <div class="creator-header">
                     <div class="profile-pic">
-                        <img src="20055f9e-1600-4322-94f1-7c68457f15ff.png"
-                             alt="Gwapo"
-                             loading="lazy"
-                             width="66"
-                             height="66"
-                             onerror="this.style.display='none'">
+                        <img src="20055f9e-1600-4322-94f1-7c68457f15ff.png" alt="Gwapo" loading="lazy" width="66"
+                            height="66" onerror="this.style.display='none'">
                     </div>
                     <div class="creator-info">
                         <p class="creator-name">Cj Banluta</p>
@@ -287,36 +296,20 @@
         <div id="socialsCon">
             <p class="follow-label">Follow me on:</p>
             <div class="social-links">
-                <a class="social-link social-facebook"
-                   href="https://www.facebook.com/cj.e.banluta.2024"
-                   aria-label="Facebook"
-                   title="Facebook"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a class="social-link social-facebook" href="https://www.facebook.com/cj.e.banluta.2024"
+                    aria-label="Facebook" title="Facebook" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                 </a>
-                <a class="social-link social-instagram"
-                   href="https://www.instagram.com/cj_.log/?hl=en"
-                   aria-label="Instagram"
-                   title="Instagram"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a class="social-link social-instagram" href="https://www.instagram.com/cj_.log/?hl=en"
+                    aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                 </a>
-                <a class="social-link social-github"
-                   href="https://github.com/Tyson913"
-                   aria-label="GitHub"
-                   title="GitHub"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a class="social-link social-github" href="https://github.com/Tyson913" aria-label="GitHub"
+                    title="GitHub" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                 </a>
-                <a class="social-link social-linkedin"
-                   href="https://www.linkedin.com/in/cj-banluta-14462a32a/"
-                   aria-label="LinkedIn"
-                   title="LinkedIn"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a class="social-link social-linkedin" href="https://www.linkedin.com/in/cj-banluta-14462a32a/"
+                    aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                 </a>
             </div>
@@ -327,7 +320,6 @@
     <script src="./Backend/operations.js" type="module"></script>
 
     <style>
-
         .skip-link {
             position: absolute;
             top: -100%;
@@ -343,6 +335,7 @@
             text-decoration: none;
             transition: top .15s ease;
         }
+
         .skip-link:focus {
             top: 0;
             outline: none;
